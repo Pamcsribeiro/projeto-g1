@@ -1,5 +1,5 @@
 # PROJETO G1 - ANÁLISE E VISUALIZAÇÃO DE DADOS (TEMA 23)
 
 * **Disciplina:** Linguagem de Programação — Análise e Visualização de Dados com Python
-* **Professor:** Alexandre Neves Louzada[cite: 1]
-* **Aluna:** Pâmela Cristina Ribeiro de Souza[cite: 1]
+* **Professor:** Alexandre Neves Louzada
+* **Aluna:** Pâmela Cristina Ribeiro de Souza

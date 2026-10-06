@@ -4,12 +4,66 @@
     <meta charset="UTF-8">
     <title>Projeto G1 - Saúde Pública no Brasil</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333; }
-        .container { max-width: 800px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        h1 { color: #0056b3; }
-        .info { background: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
-        a.btn { display: inline-block; background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 15px; }
-        a.btn:hover { background: #218838; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            min-height: 100vh; 
+            background: linear-gradient(135deg, #f5f0fa 0%, #e8f5e9 100%); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #333; 
+        }
+        .container { 
+            width: 100%; 
+            max-width: 750px; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 24px rgba(106, 27, 154, 0.12); 
+            border-top: 6px solid #6a1b9a; 
+            box-sizing: border-box;
+        }
+        h1 { 
+            color: #6a1b9a; 
+            margin-top: 0; 
+            font-size: 28px;
+        }
+        h2 {
+            color: #e65100;
+            font-size: 20px;
+        }
+        .info { 
+            background: #f3e5f5; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            border-left: 4px solid #ff9800;
+        }
+        .info p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+        a.btn { 
+            display: inline-block; 
+            background: #2e7d32; 
+            color: white; 
+            padding: 12px 24px; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            margin-top: 20px; 
+            font-weight: bold; 
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+        }
+        a.btn:hover { 
+            background: #1b5e20; 
+        }
     </style>
 </head>
 <body>
@@ -18,10 +72,10 @@
         <div class="info">
             <p><strong>Disciplina:</strong> Linguagem de Programação — Análise e Visualização de Dados com Python</p>
             <p><strong>Professor:</strong> Alexandre Neves Louzada</p>
-            <p><strong>Aluna:</strong> [Seu Nome Completo]</p>
+            <p><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>
         </div>
         <h2>Sobre o Projeto</h2>
-        <p>Análise detalhada de indicadores de saúde pública no Brasil (mortalidade, expectativa de vida, leitos e vacinação) utilizando Python e Streamlit.</p>
+        <p>Análise detalhada de indicadores de saúde pública no Brasil (mortalidade, expectativa de vida, leitos e vacinação) utilizando Python e Streamlit, com foco em transformar dados em insights para a tomada de decisão.</p>
 
         <a class="btn" href="[Cole o Link do seu Streamlit aqui]" target="_blank">Acessar Dashboard no Streamlit</a>
     </div>

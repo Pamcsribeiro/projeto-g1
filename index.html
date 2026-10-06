@@ -7,39 +7,31 @@
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
-            padding: 30px; 
+            padding: 40px; 
             background-color: #0e0e10; 
             color: #e0e0e0; 
         }
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            background: #18181b; 
-            padding: 40px; 
-            border-radius: 12px; 
-            box-shadow: 0 8px 24px rgba(106, 27, 154, 0.25); 
-            border: 1px solid #2d2d35;
-        }
         h1 { 
             color: #ab47bc; /* Roxo vibrante */
-            margin-top: 0; 
-            font-size: 28px;
+            font-size: 32px;
             border-bottom: 2px solid #ff9800; /* Laranja */
             padding-bottom: 15px;
+            margin-bottom: 30px;
         }
         h2 {
             color: #ff9800; /* Laranja */
             font-size: 20px;
-            margin-top: 30px;
-            border-left: 4px solid #ab47bc;
-            padding-left: 10px;
+            margin-top: 35px;
+            border-left: 4px solid #ab47bc; /* Detalhe roxo nos títulos */
+            padding-left: 12px;
         }
         .info-card, .section-card {
-            background: #212126;
-            padding: 20px;
+            background: #18181b;
+            padding: 25px;
             border-radius: 8px;
             margin-bottom: 20px;
             border: 1px solid #2d2d35;
+            border-top: 3px solid #ab47bc; /* Detalhe roxo */
         }
         p, li {
             line-height: 1.6;
@@ -53,27 +45,28 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         .tag {
-            background: #2d1a3b;
-            color: #ce93d8;
-            padding: 6px 12px;
+            background: #212126;
+            color: #ce93d8; /* Roxo claro */
+            padding: 6px 14px;
             border-radius: 4px;
             font-size: 14px;
             border: 1px solid #ab47bc;
         }
         a.btn { 
             display: inline-block; 
-            background: #2e7d32; /* Verde */
+            background: #2e7d32; /* APENAS O BOTÃO EM VERDE */
             color: white; 
             padding: 12px 24px; 
             text-decoration: none; 
             border-radius: 6px; 
-            margin-top: 10px; 
+            margin-top: 15px; 
             font-weight: bold; 
             transition: background 0.3s ease;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+            border: 1px solid #4caf50;
         }
         a.btn:hover { 
             background: #1b5e20; 
@@ -81,64 +74,64 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dashboard Executivo de Saúde Pública no Brasil</h1>
-        
-        <div class="info-card">
-            <p><strong>Disciplina:</strong> Linguagem de Programação — Análise e Visualização de Dados com Python</p>
-            <p><strong>Professor:</strong> Alexandre Neves Louzada</p>
-            <p><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>
-        </div>
 
-        <div class="section-card">
-            <h2>Sobre o projeto</h2>
-            <p>Projeto de análise e visualização de dados focado na saúde pública brasileira, com foco em expectativa de vida, taxas de mortalidade, cobertura vacinal, leitos e recursos médicos por região, UF e município.</p>
-            <p>A proposta é demonstrar uma análise completa do projeto: análise exploratória, preparação de dados, criação de KPIs, visualização de dados e dashboard interativo publicado online.</p>
-        </div>
+    <h1>Dashboard Executivo de Saúde Pública no Brasil</h1>
+    
+    <div class="info-card">
+        <p><strong>Disciplina:</strong> Linguagem de Programação — Análise e Visualização de Dados com Python</p>
+        <p><strong>Professor:</strong> Alexandre Neves Louzada</p>
+        <p><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>
+    </div>
 
-        <div class="section-card">
-            <h2>Perguntas de negócio</h2>
-            <ul>
-                <li>Qual é a média da expectativa de vida por região?</li>
-                <li>Como se comportam os índices de mortalidade entre os municípios?</li>
-                <li>Qual é a relação entre a quantidade de médicos por mil habitantes e a criticidade do sistema?</li>
-                <li>Quais regiões apresentam maior cobertura vacinal ao longo dos anos?</li>
-                <li>Como a taxa de internação evoluiu no período analisado?</li>
-            </ul>
-        </div>
+    <div class="section-card">
+        <h2>Sobre o projeto</h2>
+        <p>Projeto de análise e visualização de dados focado na saúde pública brasileira, com foco em expectativa de vida, taxas de mortalidade, cobertura vacinal, leitos e recursos médicos por região, UF e município.</p>
+        <p>A proposta é demonstrar uma análise completa do projeto: análise exploratória, preparação de dados, criação de KPIs, visualização de dados e dashboard interativo publicado online.</p>
+    </div>
 
-        <div class="section-card">
-            <h2>Indicadores analisados</h2>
-            <ul>
-                <li><strong>Expectativa de Vida Média:</strong> Avaliação da longevidade populacional.</li>
-                <li><strong>Taxa Média de Mortalidade:</strong> Monitoramento dos índices de mortalidade.</li>
-                <li><strong>Cobertura Vacinal:</strong> Acompanhamento percentual da imunização.</li>
-                <li><strong>Casos de Doenças Crônicas:</strong> Mapeamento da incidência epidemiológica.</li>
-            </ul>
-        </div>
+    <div class="section-card">
+        <h2>Perguntas de negócio</h2>
+        <ul>
+            <li>Qual é a média da expectativa de vida por região?</li>
+            <li>Como se comportam os índices de mortalidade entre os municípios?</li>
+            <li>Qual é a relação entre a quantidade de médicos por mil habitantes e a criticidade do sistema?</li>
+            <li>Quais regiões apresentam maior cobertura vacinal ao longo dos anos?</li>
+            <li>Como a taxa de internação evoluiu no período analisado?</li>
+        </ul>
+    </div>
 
-        <div class="section-card">
-            <h2>Tecnologias utilizadas</h2>
-            <div class="tech-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Pandas</span>
-                <span class="tag">Matplotlib</span>
-                <span class="tag">Seaborn</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">GitHub Pages</span>
-            </div>
-        </div>
+    <div class="section-card">
+        <h2>Indicadores analisados</h2>
+        <ul>
+            <li><strong>Expectativa de Vida Média:</strong> Avaliação da longevidade populacional.</li>
+            <li><strong>Taxa Média de Mortalidade:</strong> Monitoramento dos índices de mortalidade.</li>
+            <li><strong>Cobertura Vacinal:</strong> Acompanhamento percentual da imunização.</li>
+            <li><strong>Casos de Doenças Crônicas:</strong> Mapeamento da incidência epidemiológica.</li>
+        </ul>
+    </div>
 
-        <div class="section-card">
-            <h2>Dashboard Interativo</h2>
-            <p>O dashboard principal foi desenvolvido com Streamlit e permite explorar os dados por meio de filtros interativos, KPIs e gráficos.</p>
-            <a class="btn" href="[Cole o Link do seu Streamlit aqui]" target="_blank">Acessar Dashboard Streamlit</a>
-        </div>
-
-        <div class="section-card">
-            <h2>Objetivo pedagógico</h2>
-            <p>Este projeto serve como referência para a avaliação G1 da disciplina, mostrando como transformar uma base de dados em um produto analítico completo, organizado e publicável.</p>
+    <div class="section-card">
+        <h2>Tecnologias utilizadas</h2>
+        <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Seaborn</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">GitHub Pages</span>
         </div>
     </div>
+
+    <div class="section-card">
+        <h2>Dashboard Interativo</h2>
+        <p>O dashboard principal foi desenvolvido com Streamlit e permite explorar os dados por meio de filtros interativos, KPIs e gráficos.</p>
+        <a class="btn" href="[Cole o Link do seu Streamlit aqui]" target="_blank">Acessar Dashboard Streamlit</a>
+    </div>
+
+    <div class="section-card">
+        <h2>Objetivo pedagógico</h2>
+        <p>Este projeto serve como referência para a avaliação G1 da disciplina, mostrando como transformar uma base de dados em um produto analítico completo, organizado e publicável.</p>
+    </div>
+
 </body>
 </html>

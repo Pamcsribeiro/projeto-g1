@@ -140,7 +140,7 @@ with col4:
 st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
 
 # ==========================================
-# BLOCO 1: Visualizações Gráficas (Cartão Único com Título e Gráficos dentro)
+# BLOCO 1: Visualizações Gráficas (Título + Gráficos dentro do Cartão)
 # ==========================================
 st.markdown('<div class="html-card">', unsafe_allow_html=True)
 st.markdown('<div class="html-title">Visualizações Gráficas</div>', unsafe_allow_html=True)
@@ -180,10 +180,10 @@ with col_g2:
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
-st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão unificado de gráficos
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ==========================================
-# BLOCO 2: Tabela Detalhada (Cartão Único com Título e Tabela dentro)
+# BLOCO 2: Tabela Detalhada (Título + Tabela dentro do Cartão)
 # ==========================================
 st.markdown('<div class="html-card">', unsafe_allow_html=True)
 st.markdown('<div class="html-title">Tabela Detalhada dos Dados Filtrados</div>', unsafe_allow_html=True)
@@ -194,7 +194,7 @@ st.dataframe(
     height=500
 )
 
-st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão unificado da tabela
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Interpretação Textual e Conclusão Executiva
 col_inf1, col_inf2 = st.columns(2)

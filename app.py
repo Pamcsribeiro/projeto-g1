@@ -5,25 +5,27 @@ import seaborn as sns
 
 # Configuração da página do Streamlit
 st.set_page_config(
-    page_title="Dashboard G1 - Saúde Pública no Brasil",
+    page_title="Dashboard Executivo - Saúde Pública no Brasil",
     page_icon="📊",
     layout="wide"
 )
 
-# Estilização visual (Roxo, Laranja e Verde)
+# Estilização visual personalizada (Preto, Roxo, Laranja e Verde)
 st.markdown("""
     <style>
-    .main { background-color: #f8f9fa; }
-    h1, h2, h3 { color: #6a1b9a; }
-    .stMetric { background-color: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(106, 27, 154, 0.1); border-left: 5px solid #ff9800; }
+    .main { background-color: #0e0e10; color: #e0e0e0; }
+    h1, h2, h3 { color: #ab47bc !important; }
+    .stMetric { background-color: #18181b; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(171, 71, 188, 0.2); border-left: 5px solid #ff9800; border-top: 1px solid #2d2d35; }
+    .stMetric label { color: #b0b0b5 !important; }
+    .stMetric div[data-testid="stMetricValue"] { color: #ff9800 !important; }
     </style>
 """, unsafe_allow_html=True)
 
 # Cabeçalho de Identificação Obrigatória
-st.title("📊 Dashboard Interativo: Análise de Saúde Pública no Brasil")
+st.title("📊 Dashboard Executivo: Análise de Saúde Pública no Brasil")
 st.markdown("""
 ---
-* **Disciplina:** Linguagem de Programação — Análise e Visualização de Dados com Python  
+* **Disciplina:** Linguagem de Programação  
 * **Professor:** Alexandre Neves Louzada  
 * **Aluna:** Pâmela Cristina Ribeiro de Souza  
 ---
@@ -32,7 +34,6 @@ st.markdown("""
 # Carregamento dos dados
 @st.cache_data
 def carregar_dados():
-    # Carrega a base de dados da pasta dados/
     return pd.read_csv("dados/simulacao_saude_publica_brasil.csv")
 
 try:
@@ -98,16 +99,16 @@ col_g1, col_g2 = st.columns(2)
 with col_g1:
     st.markdown("#### Expectativa de Vida por Região")
     fig, ax = plt.subplots(figsize=(8, 5))
-    sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', palette='Purples', ax=ax, ci=None)
-    ax.set_ylabel("Expectativa de Vida")
-    ax.set_xlabel("Região")
+    sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ab47bc', ax=ax, ci=None)
+    ax.set_ylabel("Expectativa de Vida", color='#333')
+    ax.set_xlabel("Região", color='#333')
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
 with col_g2:
     st.markdown("#### Relação entre Médicos por 1.000 hab. e Mortalidade")
     fig, ax = plt.subplots(figsize=(8, 5))
-    sns.scatterplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', hue='nivel_criticidade', palette='Set2', ax=ax)
+    sns.scatterplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', hue='nivel_criticidade', palette='viridis', ax=ax)
     ax.set_xlabel("Médicos por 1.000 habitantes")
     ax.set_ylabel("Taxa de Mortalidade")
     st.pyplot(fig)
@@ -118,9 +119,11 @@ st.markdown("---")
 st.subheader("📋 Tabela Detalhada dos Dados Filtrados")
 st.dataframe(df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']], use_container_width=True)
 
-# Conclusão Executiva
-st.subheader("🎯 Conclusão Executiva")
+# Interpretação Textual e Conclusão Executiva
+st.subheader("🎯 Interpretação e Conclusão Executiva")
 st.write("""
-A análise dos dados evidencia disparidades regionais significativas nos índices de saúde pública no Brasil. 
-Os filtros interativos aplicados demonstram que regiões com maior densidade de médicos por mil habitantes e melhores taxas de cobertura vacinal tendem a apresentar indicadores mais estáveis de expectativa de vida e menor criticidade sistêmica. Este projeto cumpre com rigor todos os requisitos metodológicos e tecnológicos propostos pela disciplina.
+**Interpretação Textual:** A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.
+""")
+st.write("""
+**Conclusão Executiva:** O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.
 """)

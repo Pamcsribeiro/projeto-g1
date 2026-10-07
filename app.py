@@ -10,26 +10,46 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilização visual personalizada (Preto, Roxo, Laranja e Verde)
+# Estilização visual personalizada (Tema Escuro / Halloween Elegante idêntico ao HTML)
 st.markdown("""
     <style>
-    .main { background-color: #0e0e10; color: #e0e0e0; }
-    h1, h2, h3 { color: #ab47bc !important; }
-    .stMetric { background-color: #18181b; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(171, 71, 188, 0.2); border-left: 5px solid #ff9800; border-top: 1px solid #2d2d35; }
-    .stMetric label { color: #b0b0b5 !important; }
-    .stMetric div[data-testid="stMetricValue"] { color: #ff9800 !important; }
+    /* Fundo geral e cor do texto */
+    .main { background-color: #0b090c; color: #e0dced; }
+    [data-testid="stAppViewContainer"] { background-color: #0b090c; }
+    [data-testid="stSidebar"] { background-color: #16131a; }
+    
+    /* Títulos personalizados */
+    h1, h2, h3 { color: #ff7518 !important; }
+    
+    /* Cartões métricos (KPIs) com o mesmo visual dos cards do HTML */
+    .stMetric { 
+        background-color: #16131a; 
+        padding: 20px; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.15); 
+        border: 1px solid #2d263b;
+        border-top: 3px solid #ff7518; 
+    }
+    .stMetric label { color: #b197fc !important; font-weight: 500; }
+    .stMetric div[data-testid="stMetricValue"] { color: #ff7518 !important; font-weight: bold; }
+    
+    /* Textos gerais e rótulos */
+    p, span, label { color: #c4b5fd !important; }
+    
+    /* Divisores */
+    hr { border-color: #2d263b; }
     </style>
 """, unsafe_allow_html=True)
 
-# Cabeçalho de Identificação Obrigatória
-st.title("📊 Dashboard Executivo: Análise de Saúde Pública no Brasil")
+# Cabeçalho de Identificação Obrigatória (alinhado com o HTML)
+st.title("Dashboard Executivo de Saúde Pública no Brasil")
 st.markdown("""
----
-* **Disciplina:** Linguagem de Programação  
-* **Professor:** Alexandre Neves Louzada  
-* **Aluna:** Pâmela Cristina Ribeiro de Souza  
----
-""")
+<div style="background-color: #16131a; padding: 20px; border-radius: 8px; border: 1px solid #2d263b; border-top: 3px solid #ff7518; margin-bottom: 25px;">
+    <p style="margin: 5px 0;"><strong>Disciplina:</strong> Linguagem de Programação</p>
+    <p style="margin: 5px 0;"><strong>Professor:</strong> Alexandre Neves Louzada</p>
+    <p style="margin: 5px 0;"><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Carregamento dos dados
 @st.cache_data
@@ -43,14 +63,15 @@ except Exception as e:
     st.stop()
 
 # Descrição do Problema
-st.subheader("💡 Descrição do Problema")
+st.subheader("Sobre o projeto")
 st.write("""
-Este painel interativo tem como objetivo explorar indicadores críticos de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. 
-A análise permite examinar a relação entre a expectativa de vida, taxas de mortalidade, internação, cobertura vacinal e a disponibilidade de recursos médicos e hospitalares.
+O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, as taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país.
 """)
 
+st.markdown("---")
+
 # Barra Lateral (Filtros Interativos)
-st.sidebar.header("🔍 Filtros de Análise")
+st.sidebar.header("Filtros de Análise")
 
 regioes = sorted(df['regiao'].unique())
 regiao_selecionada = st.sidebar.selectbox("Selecione a Região:", ["Todas"] + regioes)
@@ -70,7 +91,7 @@ ano_selecionado = st.sidebar.slider("Selecione o Ano:", min_value=int(anos[0]), 
 df_filtrado = df_filtrado[(df_filtrado['ano'] >= ano_selecionado[0]) & (df_filtrado['ano'] <= ano_selecionado[1])]
 
 # Seção de KPIs Dinâmicos
-st.subheader("📈 Indicadores Chave de Desempenho (KPIs)")
+st.subheader("Indicadores Chave de Desempenho (KPIs)")
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -91,39 +112,63 @@ with col4:
 
 st.markdown("---")
 
-# Seção de Gráficos
-st.subheader("📊 Visualizações Gráficas")
+# Seção de Gráficos (Matplotlib/Seaborn customizados para combinar com o tema escuro)
+st.subheader("Visualizações Gráficas")
+
+# Configuração de estilo dos gráficos para fundo escuro
+plt.rcParams['text.color'] = '#c4b5fd'
+plt.rcParams['axes.labelcolor'] = '#c4b5fd'
+plt.rcParams['xtick.color'] = '#c4b5fd'
+plt.rcParams['ytick.color'] = '#c4b5fd'
 
 col_g1, col_g2 = st.columns(2)
 
 with col_g1:
     st.markdown("#### Expectativa de Vida por Região")
     fig, ax = plt.subplots(figsize=(8, 5))
-    sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ab47bc', ax=ax, ci=None)
-    ax.set_ylabel("Expectativa de Vida", color='#333')
-    ax.set_xlabel("Região", color='#333')
+    fig.patch.set_facecolor('#16131a')
+    ax.set_facecolor('#16131a')
+    sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax, errorbar=None)
+    ax.spines['bottom'].set_color('#2d263b')
+    ax.spines['left'].set_color('#2d263b')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
 with col_g2:
     st.markdown("#### Relação entre Médicos por 1.000 hab. e Mortalidade")
     fig, ax = plt.subplots(figsize=(8, 5))
-    sns.scatterplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', hue='nivel_criticidade', palette='viridis', ax=ax)
-    ax.set_xlabel("Médicos por 1.000 habitantes")
-    ax.set_ylabel("Taxa de Mortalidade")
+    fig.patch.set_facecolor('#16131a')
+    ax.set_facecolor('#16131a')
+    sns.scatterplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', hue='nivel_criticidade', palette='plasma', ax=ax)
+    ax.spines['bottom'].set_color('#2d263b')
+    ax.spines['left'].set_color('#2d263b')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    legend = ax.legend(facecolor='#16131a', labelcolor='#c4b5fd')
+    legend.get_frame().set_edgecolor('#2d263b')
     st.pyplot(fig)
 
 st.markdown("---")
 
 # Tabela de Dados Detalhados
-st.subheader("📋 Tabela Detalhada dos Dados Filtrados")
+st.subheader("Tabela Detalhada dos Dados Filtrados")
 st.dataframe(df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']], use_container_width=True)
 
+st.markdown("---")
+
 # Interpretação Textual e Conclusão Executiva
-st.subheader("🎯 Interpretação e Conclusão Executiva")
-st.write("""
-**Interpretação Textual:** A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.
-""")
-st.write("""
-**Conclusão Executiva:** O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.
-""")
+col_inf1, col_inf2 = st.columns(2)
+
+with col_inf1:
+    st.subheader("Interpretação dos Resultados")
+    st.write("""
+    A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.
+    """)
+
+with col_inf2:
+    st.subheader("Conclusão")
+    st.write("""
+    O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.
+    """)

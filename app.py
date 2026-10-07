@@ -31,10 +31,9 @@ st.markdown("""
         font-size: 32px !important; 
         font-weight: 800 !important;
         letter-spacing: -0.5px;
-        margin-bottom: 0px !important;
-        padding-bottom: 0px !important;
+        margin-bottom: 10px;
+        padding-bottom: 15px;
         line-height: 1.2;
-
         border-bottom: 2px solid #9d4edd; 
         text-shadow: 0 0 10px rgba(255, 117, 24, 0.4);
     }

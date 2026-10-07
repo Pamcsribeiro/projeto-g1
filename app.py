@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import io
+import base64
 
 # Configuração da página do Streamlit
 st.set_page_config(
@@ -139,48 +141,65 @@ with col4:
 
 st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
 
+# Função auxiliar para converter gráficos Matplotlib em imagens base64
+def fig_to_base64(fig):
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", bbox_inches='tight', facecolor=fig.get_facecolor(), edgecolor='none')
+    buf.seek(0)
+    img_str = base64.b64encode(buf.read()).decode('utf-8')
+    plt.close(fig)
+    return f"data:image/png;base64,{img_str}"
+
+# Gerando Gráfico 1
+fig1, ax1 = plt.subplots(figsize=(6, 4))
+fig1.patch.set_facecolor('#16131a')
+ax1.set_facecolor('#16131a')
+sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax1, errorbar=None)
+ax1.set_ylim(0, 85)
+ax1.spines['bottom'].set_color('#2d263b')
+ax1.spines['left'].set_color('#2d263b')
+ax1.spines['top'].set_visible(False)
+ax1.spines['right'].set_visible(False)
+ax1.tick_params(colors='#c4b5fd')
+ax1.xaxis.label.set_color('#c4b5fd')
+ax1.yaxis.label.set_color('#c4b5fd')
+plt.xticks(rotation=45)
+img1 = fig_to_base64(fig1)
+
+# Gerando Gráfico 2
+fig2, ax2 = plt.subplots(figsize=(6, 4))
+fig2.patch.set_facecolor('#16131a')
+ax2.set_facecolor('#16131a')
+sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
+ax2.set_ylim(0, 15)
+ax2.spines['bottom'].set_color('#2d263b')
+ax2.spines['left'].set_color('#2d263b')
+ax2.spines['top'].set_visible(False)
+ax2.spines['right'].set_visible(False)
+ax2.tick_params(colors='#c4b5fd')
+ax2.xaxis.label.set_color('#c4b5fd')
+ax2.yaxis.label.set_color('#c4b5fd')
+plt.xticks(rotation=45)
+img2 = fig_to_base64(fig2)
+
 # ==========================================
-# BLOCO 1: Visualizações Gráficas (Título + Gráficos dentro do Cartão)
+# BLOCO UNIFICADO: Visualizações Gráficas (Título + Gráficos 100% dentro do Cartão)
 # ==========================================
-st.markdown('<div class="html-card">', unsafe_allow_html=True)
-st.markdown('<div class="html-title">Visualizações Gráficas</div>', unsafe_allow_html=True)
-
-plt.rcParams['text.color'] = '#c4b5fd'
-plt.rcParams['axes.labelcolor'] = '#c4b5fd'
-plt.rcParams['xtick.color'] = '#c4b5fd'
-plt.rcParams['ytick.color'] = '#c4b5fd'
-
-col_g1, col_g2 = st.columns(2)
-
-with col_g1:
-    st.markdown("<h4 style='color: #ff7518; font-size: 16px; margin-top: 0;'>Expectativa de Vida Média por Região</h4>", unsafe_allow_html=True)
-    fig, ax = plt.subplots(figsize=(6.5, 4.2))
-    fig.patch.set_facecolor('#16131a')
-    ax.set_facecolor('#16131a')
-    sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax, errorbar=None)
-    ax.set_ylim(0, 85)
-    ax.spines['bottom'].set_color('#2d263b')
-    ax.spines['left'].set_color('#2d263b')
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    plt.xticks(rotation=45)
-    st.pyplot(fig)
-
-with col_g2:
-    st.markdown("<h4 style='color: #ff7518; font-size: 16px; margin-top: 0;'>Taxa Média de Mortalidade por Região</h4>", unsafe_allow_html=True)
-    fig, ax = plt.subplots(figsize=(6.5, 4.2))
-    fig.patch.set_facecolor('#16131a')
-    ax.set_facecolor('#16131a')
-    sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax, errorbar=None)
-    ax.set_ylim(0, 15)
-    ax.spines['bottom'].set_color('#2d263b')
-    ax.spines['left'].set_color('#2d263b')
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    plt.xticks(rotation=45)
-    st.pyplot(fig)
-
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown(f"""
+<div class="html-card">
+    <div class="html-title">Visualizações Gráficas</div>
+    <div style="display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+            <h4 style="color: #ff7518; font-size: 16px; margin-bottom: 15px;">Expectativa de Vida Média por Região</h4>
+            <img src="{img1}" style="width: 100%; border-radius: 6px;" />
+        </div>
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+            <h4 style="color: #ff7518; font-size: 16px; margin-bottom: 15px;">Taxa Média de Mortalidade por Região</h4>
+            <img src="{img2}" style="width: 100%; border-radius: 6px;" />
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # ==========================================
 # BLOCO 2: Tabela Detalhada (Título + Tabela dentro do Cartão)

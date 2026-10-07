@@ -112,7 +112,7 @@ with col4:
 
 st.markdown("---")
 
-# Seção de Gráficos com alturas perfeitamente padronizadas
+# Seção de Gráficos com alturas e larguras perfeitamente padronizadas
 st.subheader("Visualizações Gráficas")
 
 plt.rcParams['text.color'] = '#c4b5fd'
@@ -137,18 +137,17 @@ with col_g1:
     st.pyplot(fig)
 
 with col_g2:
-    st.markdown("#### Relação entre Médicos por 1.000 hab. e Mortalidade")
+    st.markdown("#### Evolução Temporal da Taxa de Mortalidade")
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
-    sns.scatterplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', hue='nivel_criticidade', palette='plasma', ax=ax)
+    df_temporal = df_filtrado.groupby('ano')['taxa_mortalidade'].mean().reset_index()
+    sns.lineplot(data=df_temporal, x='ano', y='taxa_mortalidade', color='#9d4edd', marker='o', linewidth=2.5, ax=ax)
     ax.set_ylim(3, 13)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    legend = ax.legend(facecolor='#16131a', labelcolor='#c4b5fd', bbox_to_anchor=(1.02, 1), loc='upper left')
-    legend.get_frame().set_edgecolor('#2d263b')
     st.pyplot(fig)
 
 st.markdown("---")

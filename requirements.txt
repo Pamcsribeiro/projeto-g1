@@ -1,7 +1,4 @@
-Todos os projetos deverão utilizar obrigatoriamente:
-● 	Python
-● 	Pandas
-● 	Matplotlib
-● 	Seaborn
-● 	Streamlit
-●   GitHub
+streamlit
+pandas
+matplotlib
+seaborn

@@ -18,9 +18,21 @@ st.markdown("""
     [data-testid="stAppViewContainer"] { background-color: #0b090c; }
     [data-testid="stSidebar"] { background-color: #16131a; border-right: 1px solid #2d263b; }
     
-    /* Tipografia e Títulos */
-    h1, h2, h3 { color: #ff7518 !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    /* Tipografia geral */
+    h1 { color: #ff7518 !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 32px; }
     
+    /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */
+    .html-title {
+        color: #ff7518 !important; 
+        font-size: 20px; 
+        margin-top: 35px; 
+        margin-bottom: 15px; 
+        border-left: 4px solid #ab47bc; 
+        padding-left: 12px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+    }
+
     /* Estilo dos blocos/cartões igual ao HTML (.section-card) */
     .html-card {
         background: #16131a;
@@ -77,10 +89,10 @@ except Exception as e:
     st.error(f"Erro ao carregar o arquivo de dados: {e}")
     st.stop()
 
-# Seção: Sobre o Projeto (em formato de Cartão HTML)
+# Seção: Sobre o Projeto
 st.markdown("""
 <div class="html-card">
-    <h2 style="color: #ff7518; font-size: 20px; margin-top: 0; margin-bottom: 15px; border-left: 4px solid #9d4edd; padding-left: 12px;">Sobre o projeto</h2>
+    <div class="html-title" style="margin-top: 0;">Sobre o projeto</div>
     <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, as taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país. A partir do tratamento da base de dados e da criação de indicadores dinâmicos, o projeto traduz informações complexas em visualizações claras e acessíveis por meio de um painel interativo publicado na web, facilitando a interpretação dos resultados e a compreensão de cenários essenciais para a área da saúde.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -106,7 +118,7 @@ ano_selecionado = st.sidebar.slider("Selecione o Ano:", min_value=int(anos[0]), 
 df_filtrado = df_filtrado[(df_filtrado['ano'] >= ano_selecionado[0]) & (df_filtrado['ano'] <= ano_selecionado[1])]
 
 # Seção de KPIs Dinâmicos
-st.markdown("<h2>Indicadores Chave de Desempenho (KPIs)</h2>", unsafe_allow_html=True)
+st.markdown("<div class='html-title'>Indicadores Chave de Desempenho (KPIs)</div>", unsafe_allow_html=True)
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -128,7 +140,7 @@ with col4:
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # Seção de Gráficos com alturas rigorosamente idênticas (figsize=(7, 4.5))
-st.markdown("<h2>Visualizações Gráficas</h2>", unsafe_allow_html=True)
+st.markdown("<div class='html-title'>Visualizações Gráficas</div>", unsafe_allow_html=True)
 
 plt.rcParams['text.color'] = '#c4b5fd'
 plt.rcParams['axes.labelcolor'] = '#c4b5fd'
@@ -138,7 +150,7 @@ plt.rcParams['ytick.color'] = '#c4b5fd'
 col_g1, col_g2 = st.columns(2)
 
 with col_g1:
-    st.markdown("<h4 style='color: #b197fc;'>Expectativa de Vida Média por Região</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color: #ff7518; font-size: 16px;'>Expectativa de Vida Média por Região</h4>", unsafe_allow_html=True)
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
@@ -152,7 +164,7 @@ with col_g1:
     st.pyplot(fig)
 
 with col_g2:
-    st.markdown("<h4 style='color: #b197fc;'>Taxa Média de Mortalidade por Região</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color: #ff7518; font-size: 16px;'>Taxa Média de Mortalidade por Região</h4>", unsafe_allow_html=True)
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
@@ -168,7 +180,7 @@ with col_g2:
 st.markdown("<hr>", unsafe_allow_html=True)
 
 # Tabela de Dados Detalhados
-st.markdown("<h2>Tabela Detalhada dos Dados Filtrados</h2>", unsafe_allow_html=True)
+st.markdown("<div class='html-title'>Tabela Detalhada dos Dados Filtrados</div>", unsafe_allow_html=True)
 st.dataframe(
     df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']], 
     use_container_width=True, 
@@ -183,15 +195,15 @@ col_inf1, col_inf2 = st.columns(2)
 with col_inf1:
     st.markdown("""
     <div class="html-card" style="height: 100%;">
-        <h3 style="color: #ff7518; font-size: 18px; margin-top: 0; border-left: 4px solid #9d4edd; padding-left: 10px;">Interpretação dos Resultados</h3>
-        <p class="texto-justificado" style="color: #c4b5fd;">A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.</p>
+        <div class="html-title" style="margin-top: 0;">Interpretação dos Resultados</div>
+        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col_inf2:
     st.markdown("""
     <div class="html-card" style="height: 100%;">
-        <h3 style="color: #ff7518; font-size: 18px; margin-top: 0; border-left: 4px solid #9d4edd; padding-left: 10px;">Conclusão</h3>
-        <p class="texto-justificado" style="color: #c4b5fd;">O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.</p>
+        <div class="html-title" style="margin-top: 0;">Conclusão</div>
+        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.</p>
     </div>
     """, unsafe_allow_html=True)

@@ -256,7 +256,7 @@ img1 = fig_to_base64(fig1)
 fig2, ax2 = plt.subplots(figsize=(7.5, 3.8))
 fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#ab47bc', alpha=1.0, ax=ax2, errorbar=None)
+sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#00E676', alpha=1.0, ax=ax2, errorbar=None)
 ax2.set_ylim(0, 15)
 ax2.spines['bottom'].set_color('#2d263b')
 ax2.spines['left'].set_color('#2d263b')
@@ -279,10 +279,10 @@ graficos_html = f"""
     <div class="html-title">Visualizações Gráficas</div>
     <div style="display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <img src="{img1}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
+            <img src="{img1}" style="width: 100%; border-radius: 6px;"/>
         </div>
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <img src="{img2}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
+            <img src="{img2}" style="width: 100%; border-radius: 6px;"/>
         </div>
     </div>
 </div>

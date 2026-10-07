@@ -12,72 +12,86 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilização visual avançada idêntica ao HTML
+# Estilização visual avançada e refinada (idêntica ao HTML de alto padrão)
 st.markdown("""
     <style>
     /* Fundo geral e da barra lateral */
     .main { background-color: #0b090c; color: #e0dced; }
-    [data-testid="stAppViewContainer"] { background-color: #0b090c; }
-    [data-testid="stSidebar"] { background-color: #16131a; border-right: 1px solid #2d263b; }
+    [data-testid="stAppViewContainer"] { background-color: #0b090c; padding-top: 1rem; }
+    [data-testid="stSidebar"] { 
+        background-color: #16131a; 
+        border-right: 1px solid #2d263b; 
+        padding-top: 20px;
+    }
     
     /* Tipografia geral */
-    h1 { color: #ff7518 !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 32px; }
+    h1 { 
+        color: #ff7518 !important; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 30px; 
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        margin-bottom: 5px;
+    }
     
     /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */
     .html-title {
         color: #ff7518 !important; 
-        font-size: 20px; 
+        font-size: 18px; 
         margin-top: 0px; 
         margin-bottom: 20px; 
         border-left: 4px solid #ab47bc; 
         padding-left: 12px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: bold;
+        letter-spacing: 0.3px;
     }
 
-    /* Estilo dos blocos/cartões igual ao HTML (.section-card) */
+    /* Estilo dos blocos/cartões refinados igual ao HTML (.section-card) */
     .html-card {
         background: #16131a;
         padding: 25px;
-        border-radius: 8px;
+        border-radius: 10px;
         margin-bottom: 25px;
         border: 1px solid #2d263b;
         border-top: 3px solid #ff7518;
-        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
     
-    /* Cartões internos de KPI dentro do bloco unificado */
+    /* Cartões internos de KPI unificados e elegantes */
     .kpi-container {
         display: flex;
-        gap: 20px;
+        gap: 16px;
         justify-content: space-between;
         flex-wrap: wrap;
     }
     .kpi-box {
         flex: 1;
-        min-width: 220px;
+        min-width: 210px;
         background-color: #0b090c;
         padding: 20px;
         border-radius: 8px;
         border: 1px solid #2d263b;
         border-top: 3px solid #2e7d32;
-        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.15);
+        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
         text-align: left;
     }
     .kpi-label {
         color: #b197fc;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 13px;
         margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     .kpi-value {
         color: #ff7518;
         font-weight: bold;
-        font-size: 26px;
+        font-size: 24px;
     }
     
     /* Textos gerais e parágrafos justificados */
-    p, span, label, .stMarkdown { color: #c4b5fd !important; line-height: 1.6; }
+    p, span, label, .stMarkdown { color: #c4b5fd !important; line-height: 1.6; font-size: 14px; }
     .texto-justificado { text-align: justify; }
     
     /* Estilização da Tabela Customizada */
@@ -85,7 +99,7 @@ st.markdown("""
         width: 100%;
         color: #e0dced;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: 13px;
         background-color: #16131a;
     }
     .table-custom th {
@@ -94,9 +108,10 @@ st.markdown("""
         padding: 12px;
         text-align: left;
         border-bottom: 2px solid #ab47bc;
+        font-weight: 600;
     }
     .table-custom td {
-        padding: 10px;
+        padding: 10px 12px;
         border-bottom: 1px solid #2d263b;
         color: #c4b5fd;
     }
@@ -104,11 +119,15 @@ st.markdown("""
         background-color: #211a2d;
     }
     .table-wrapper {
-        max-height: 500px;
+        max-height: 450px;
         overflow-y: auto;
         border-radius: 6px;
+        border: 1px solid #2d263b;
     }
 
+    /* Ajustes visuais para os seletores da barra lateral */
+    .stSelectbox label, .stSlider label { color: #b197fc !important; font-weight: 500; }
+    
     /* Divisores */
     hr { border-color: #2d263b; margin: 30px 0; }
     </style>
@@ -116,14 +135,14 @@ st.markdown("""
 
 # Título Principal e Subtítulo idênticos ao HTML
 st.markdown("<h1>Dashboard Executivo de Saúde Pública no Brasil</h1>", unsafe_allow_html=True)
-st.markdown("<div style='color: #b197fc; font-size: 16px; margin-bottom: 30px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
+st.markdown("<div style='color: #b197fc; font-size: 15px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
 
 # Cartão de Identificação Obrigatória
 st.markdown(
     '<div class="html-card">'
-    '<p style="margin: 8px 0; color: #c4b5fd;"><strong>Disciplina:</strong> Linguagem de Programação</p>'
-    '<p style="margin: 8px 0; color: #c4b5fd;"><strong>Professor:</strong> Alexandre Neves Louzada</p>'
-    '<p style="margin: 8px 0; color: #c4b5fd;"><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>'
+    '<p style="margin: 6px 0; color: #c4b5fd;"><strong>Disciplina:</strong> Linguagem de Programação</p>'
+    '<p style="margin: 6px 0; color: #c4b5fd;"><strong>Professor:</strong> Alexandre Neves Louzada</p>'
+    '<p style="margin: 6px 0; color: #c4b5fd;"><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>'
     '</div>',
     unsafe_allow_html=True
 )
@@ -201,17 +220,17 @@ kpi_html = f"""
 """
 st.markdown(kpi_html, unsafe_allow_html=True)
 
-# Função auxiliar para converter gráficos Matplotlib em imagens base64
+# Função auxiliar para converter gráficos Matplotlib em imagens base64 com alta nitidez
 def fig_to_base64(fig):
     buf = io.BytesIO()
-    fig.savefig(buf, format="png", bbox_inches='tight', facecolor=fig.get_facecolor(), edgecolor='none')
+    fig.savefig(buf, format="png", bbox_inches='tight', facecolor=fig.get_facecolor(), edgecolor='none', dpi=120)
     buf.seek(0)
     img_str = base64.b64encode(buf.read()).decode('utf-8')
     plt.close(fig)
     return f"data:image/png;base64,{img_str}"
 
 # Gerando Gráfico 1
-fig1, ax1 = plt.subplots(figsize=(6, 4))
+fig1, ax1 = plt.subplots(figsize=(6, 3.8))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
 sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax1, errorbar=None)
@@ -220,14 +239,16 @@ ax1.spines['bottom'].set_color('#2d263b')
 ax1.spines['left'].set_color('#2d263b')
 ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
-ax1.tick_params(colors='#c4b5fd')
+ax1.tick_params(colors='#c4b5fd', labelsize=9)
 ax1.xaxis.label.set_color('#c4b5fd')
 ax1.yaxis.label.set_color('#c4b5fd')
-plt.xticks(rotation=45)
+ax1.set_xlabel("Região", fontsize=10)
+ax1.set_ylabel("Média (Anos)", fontsize=10)
+plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
 # Gerando Gráfico 2
-fig2, ax2 = plt.subplots(figsize=(6, 4))
+fig2, ax2 = plt.subplots(figsize=(6, 3.8))
 fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
 sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
@@ -236,10 +257,12 @@ ax2.spines['bottom'].set_color('#2d263b')
 ax2.spines['left'].set_color('#2d263b')
 ax2.spines['top'].set_visible(False)
 ax2.spines['right'].set_visible(False)
-ax2.tick_params(colors='#c4b5fd')
+ax2.tick_params(colors='#c4b5fd', labelsize=9)
 ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
-plt.xticks(rotation=45)
+ax2.set_xlabel("Região", fontsize=10)
+ax2.set_ylabel("Taxa Média", fontsize=10)
+plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 
 # ==========================================
@@ -250,12 +273,12 @@ graficos_html = f"""
     <div class="html-title">Visualizações Gráficas</div>
     <div style="display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <h4 style="color: #ff7518; font-size: 16px; margin-bottom: 15px;">Expectativa de Vida Média por Região</h4>
-            <img src="{img1}" style="width: 100%; border-radius: 6px;" />
+            <h4 style="color: #ff7518; font-size: 15px; margin-bottom: 12px; font-weight: 600;">Expectativa de Vida Média por Região</h4>
+            <img src="{img1}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
         </div>
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <h4 style="color: #ff7518; font-size: 16px; margin-bottom: 15px;">Taxa Média de Mortalidade por Região</h4>
-            <img src="{img2}" style="width: 100%; border-radius: 6px;" />
+            <h4 style="color: #ff7518; font-size: 15px; margin-bottom: 12px; font-weight: 600;">Taxa Média de Mortalidade por Região</h4>
+            <img src="{img2}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
         </div>
     </div>
 </div>

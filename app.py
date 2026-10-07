@@ -33,18 +33,6 @@ st.markdown("""
     .stMetric label { color: #b197fc !important; font-weight: 500; }
     .stMetric div[data-testid="stMetricValue"] { color: #ff7518 !important; font-weight: bold; }
     
-    /* Estilização completa do slider em verde */
-    .stSlider [data-baseweb="slider"] div[role="slider"] {
-        background-color: #2e7d32 !important;
-        border-color: #2e7d32 !important;
-    }
-    .stSlider [data-baseweb="slider"] div {
-        background-color: #2e7d32 !important;
-    }
-    div[data-baseweb="track"] {
-        background-color: #2e7d32 !important;
-    }
-
     /* Textos gerais e rótulos */
     p, span, label { color: #c4b5fd !important; }
     
@@ -124,10 +112,9 @@ with col4:
 
 st.markdown("---")
 
-# Seção de Gráficos (Matplotlib/Seaborn customizados com alinhamento de altura)
+# Seção de Gráficos com alturas perfeitamente padronizadas
 st.subheader("Visualizações Gráficas")
 
-# Configuração de estilo dos gráficos para fundo escuro
 plt.rcParams['text.color'] = '#c4b5fd'
 plt.rcParams['axes.labelcolor'] = '#c4b5fd'
 plt.rcParams['xtick.color'] = '#c4b5fd'
@@ -137,11 +124,11 @@ col_g1, col_g2 = st.columns(2)
 
 with col_g1:
     st.markdown("#### Expectativa de Vida por Região")
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
     sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax, errorbar=None)
-    ax.set_ylim(0, 85)  # Garante proporção e altura uniforme em relação ao outro gráfico
+    ax.set_ylim(0, 85)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)
@@ -151,16 +138,16 @@ with col_g1:
 
 with col_g2:
     st.markdown("#### Relação entre Médicos por 1.000 hab. e Mortalidade")
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
     sns.scatterplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', hue='nivel_criticidade', palette='plasma', ax=ax)
-    ax.set_ylim(3, 13)  # Limite consistente para alinhamento vertical
+    ax.set_ylim(3, 13)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    legend = ax.legend(facecolor='#16131a', labelcolor='#c4b5fd')
+    legend = ax.legend(facecolor='#16131a', labelcolor='#c4b5fd', bbox_to_anchor=(1.02, 1), loc='upper left')
     legend.get_frame().set_edgecolor('#2d263b')
     st.pyplot(fig)
 

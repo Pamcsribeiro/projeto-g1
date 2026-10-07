@@ -28,12 +28,15 @@ st.markdown("""
     .titulo-principal { 
         color: #ff7518 !important; 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        font-size: 50px !important; 
+        font-size: 32px !important; 
         font-weight: 800 !important;
         letter-spacing: -0.5px;
         margin-bottom: 0px !important;
         padding-bottom: 0px !important;
         line-height: 1.2;
+
+        border-bottom: 2px solid #9d4edd; 
+        text-shadow: 0 0 10px rgba(255, 117, 24, 0.4);
     }
     
     /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */

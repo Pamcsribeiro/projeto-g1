@@ -158,7 +158,7 @@ def carregar_dados():
 
 try:
     df = carregar_dados()
-df['regiao'] = df['regiao'].str.replace('Centro-Oeste', 'Centro  Oeste')
+    df['regiao'] = df['regiao'].str.replace('Centro-Oeste', 'Centro - Oeste')
 except Exception as e:
     st.error(f"Erro ao carregar o arquivo de dados: {e}")
     st.stop()

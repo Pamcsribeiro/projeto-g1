@@ -294,7 +294,7 @@ st.markdown(graficos_html, unsafe_allow_html=True)
 # ==========================================
 # BLOCO 2: Tabela Detalhada unificada no Cartão
 # ==========================================
-df_tabela = df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']]
+df_tabela = df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']].head(51)
 tabela_html_str = df_tabela.to_html(classes='table-custom', index=False, border=0)
 
 tabela_completa_html = f"""

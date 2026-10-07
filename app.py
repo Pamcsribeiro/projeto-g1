@@ -21,14 +21,14 @@ st.markdown("""
     /* Títulos personalizados */
     h1, h2, h3 { color: #ff7518 !important; }
     
-    /* Cartões métricos (KPIs) com o verde do botão do HTML */
+  /* Cartões métricos (KPIs) com o mesmo visual dos cards do HTML */
     .stMetric { 
         background-color: #16131a; 
         padding: 20px; 
         border-radius: 8px; 
-        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.15); 
+        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.15); 
         border: 1px solid #2d263b;
-        border-top: 3px solid #2e7d32; 
+        border-top: 3px solid #ff7518; 
     }
     .stMetric label { color: #b197fc !important; font-weight: 500; }
     .stMetric div[data-testid="stMetricValue"] { color: #ff7518 !important; font-weight: bold; }

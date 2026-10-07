@@ -12,7 +12,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilização visual avançada e refinada (idêntica ao HTML de alto padrão)
+# Estilização visual avançada e refinada com fontes maiores nos títulos solicitados
 st.markdown("""
     <style>
     /* Fundo geral e da barra lateral */
@@ -24,11 +24,11 @@ st.markdown("""
         padding-top: 20px;
     }
     
-    /* Tipografia geral */
+    /* Tipografia do Título Principal com tamanho aumentado */
     h1 { 
         color: #ff7518 !important; 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        font-size: 30px; 
+        font-size: 38px !important; 
         font-weight: 700;
         letter-spacing: -0.5px;
         margin-bottom: 5px;
@@ -37,7 +37,7 @@ st.markdown("""
     /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */
     .html-title {
         color: #ff7518 !important; 
-        font-size: 18px; 
+        font-size: 20px; 
         margin-top: 0px; 
         margin-bottom: 20px; 
         border-left: 4px solid #ab47bc; 
@@ -133,9 +133,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Título Principal e Subtítulo idênticos ao HTML
+# Título Principal com fonte maior e Subtítulo
 st.markdown("<h1>Dashboard Executivo de Saúde Pública no Brasil</h1>", unsafe_allow_html=True)
-st.markdown("<div style='color: #b197fc; font-size: 15px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
+st.markdown("<div style='color: #b197fc; font-size: 16px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
 
 # Cartão de Identificação Obrigatória
 st.markdown(
@@ -239,11 +239,11 @@ ax1.spines['bottom'].set_color('#2d263b')
 ax1.spines['left'].set_color('#2d263b')
 ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
-ax1.tick_params(colors='#c4b5fd', labelsize=9)
+ax1.tick_params(colors='#c4b5fd', labelsize=10)
 ax1.xaxis.label.set_color('#c4b5fd')
 ax1.yaxis.label.set_color('#c4b5fd')
-ax1.set_xlabel("Região", fontsize=10)
-ax1.set_ylabel("Média (Anos)", fontsize=10)
+ax1.set_xlabel("Região", fontsize=11, fontweight='bold', color='#b197fc')
+ax1.set_ylabel("Média (Anos)", fontsize=11, fontweight='bold', color='#b197fc')
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
@@ -257,27 +257,27 @@ ax2.spines['bottom'].set_color('#2d263b')
 ax2.spines['left'].set_color('#2d263b')
 ax2.spines['top'].set_visible(False)
 ax2.spines['right'].set_visible(False)
-ax2.tick_params(colors='#c4b5fd', labelsize=9)
+ax2.tick_params(colors='#c4b5fd', labelsize=10)
 ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
-ax2.set_xlabel("Região", fontsize=10)
-ax2.set_ylabel("Taxa Média", fontsize=10)
+ax2.set_xlabel("Região", fontsize=11, fontweight='bold', color='#b197fc')
+ax2.set_ylabel("Taxa Média", fontsize=11, fontweight='bold', color='#b197fc')
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 
 # ==========================================
-# BLOCO 1: Visualizações Gráficas unificadas no Cartão
+# BLOCO 1: Visualizações Gráficas unificadas no Cartão (com fontes maiores nos títulos dos gráficos)
 # ==========================================
 graficos_html = f"""
 <div class="html-card">
     <div class="html-title">Visualizações Gráficas</div>
     <div style="display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <h4 style="color: #ff7518; font-size: 15px; margin-bottom: 12px; font-weight: 600;">Expectativa de Vida Média por Região</h4>
+            <h4 style="color: #ff7518; font-size: 18px !important; margin-bottom: 12px; font-weight: 700;">Expectativa de Vida Média por Região</h4>
             <img src="{img1}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
         </div>
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <h4 style="color: #ff7518; font-size: 15px; margin-bottom: 12px; font-weight: 600;">Taxa Média de Mortalidade por Região</h4>
+            <h4 style="color: #ff7518; font-size: 18px !important; margin-bottom: 12px; font-weight: 700;">Taxa Média de Mortalidade por Região</h4>
             <img src="{img2}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
         </div>
     </div>

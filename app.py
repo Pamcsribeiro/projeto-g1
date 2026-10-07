@@ -76,7 +76,7 @@ st.markdown("""
         padding: 20px;
         border-radius: 8px;
         border: 1px solid #2d263b;
-        border-top: 3px solid #2e7d32;
+        border-top: 3px solid #ff7518;
         box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
         text-align: left;
     }
@@ -89,7 +89,7 @@ st.markdown("""
         letter-spacing: 0.5px;
     }
     .kpi-value {
-        color: #ff7518;
+        color: #2e7d32;
         font-weight: bold;
         font-size: 24px;
     }

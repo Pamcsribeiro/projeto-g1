@@ -172,4 +172,20 @@ fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
 sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
 ax2.set_ylim(0, 15)
-ax2.spines['bottom'].set_
+ax2.spines['bottom'].set_color('#2d263b')
+ax2.spines['left'].set_color('#2d263b')
+ax2.spines['top'].set_visible(False)
+ax2.spines['right'].set_visible(False)
+ax2.tick_params(colors='#c4b5fd')
+ax2.xaxis.label.set_color('#c4b5fd')
+ax2.yaxis.label.set_color('#c4b5fd')
+plt.xticks(rotation=45)
+img2 = fig_to_base64(fig2)
+
+# ==========================================
+# BLOCO 1: Visualizações Gráficas unificadas no Cartão
+# ==========================================
+st.markdown(f"""
+<div class="html-card">
+    <div class="html-title">Visualizações Gráficas</div>
+    <div style="display: flex; gap

@@ -248,11 +248,11 @@ ax1.set_title("Expectativa de Vida Média por Região", fontsize=10, fontweight=
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
-# Gerando Gráfico 2 (com título interno em destaque)
+# Gerando Gráfico 2 (Na cor oficial #ab47bc)
 fig2, ax2 = plt.subplots(figsize=(6, 4))
 fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
+sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#ab47bc', ax=ax2, errorbar=None) # <--- ALTERADO AQUI PARA '#ab47bc'
 ax2.set_ylim(0, 15)
 ax2.spines['bottom'].set_color('#2d263b')
 ax2.spines['left'].set_color('#2d263b')
@@ -263,7 +263,7 @@ ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
 ax2.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax2.set_ylabel("Taxa Média", fontsize=12, fontweight='bold', color='#b197fc')
-ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=10, fontweight='bold', color='#ce93d8', pad=12)
+ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=10, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 

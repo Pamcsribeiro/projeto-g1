@@ -76,7 +76,7 @@ st.markdown("""
         padding: 20px;
         border-radius: 8px;
         border: 1px solid #2d263b;
-        border-top: 3px solid #ff7518;
+        border-top: 3px solid #00FF66;
         box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
         text-align: left;
     }
@@ -89,7 +89,7 @@ st.markdown("""
         letter-spacing: 0.5px;
     }
     .kpi-value {
-        color: #2e7d32;
+        color: #00FF66;
         font-weight: bold;
         font-size: 24px;
     }
@@ -237,7 +237,7 @@ def fig_to_base64(fig):
 fig1, ax1 = plt.subplots(figsize=(7.5, 3.8))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#39FF14', ax=ax1, errorbar=None)
+sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#00FF66', ax=ax1, errorbar=None)
 ax1.set_ylim(0, 85)
 ax1.spines['bottom'].set_color('#2d263b')
 ax1.spines['left'].set_color('#2d263b')

@@ -305,18 +305,25 @@ tabela_completa_html = f"""
 """
 st.markdown(tabela_completa_html, unsafe_allow_html=True)
 
-# Interpretação Textual e Conclusão Executiva
-st.markdown(
-    '<div class="html-card">'
-    '<div class="html-title">Interpretação dos Resultados</div>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin-bottom: 15px;">A análise exploratória dos dados revela padrões fundamentais sobre a saúde pública brasileira entre 2015 e 2024, evidenciando que as regiões que registram maior expectativa de vida e menores taxas de mortalidade estão diretamente correlacionadas com índices elevados de cobertura vacinal e grande densidade de recursos médicos.</p>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">Através dos filtros interativos e da visualização gráfica, observa-se que desigualdades regionais ainda impactam a eficiência assistencial, demonstrando que investimentos contínuos em infraestrutura de atendimento e prevenção epidemiológica são determinantes cruciais para a mitigação de quadros críticos e para a melhoria geral da qualidade de vida populacional.</p>' 
-    unsafe_allow_html=True
-)
+# Interpretação dos Resultados (Dividida em 2 parágrafos)
+st.markdown("""
+    <div class="html-card">
+        <div class="html-title">Interpretação dos Resultados</div>
+        <p class="texto-justificado" style="color: #c4b5fd; margin-bottom: 15px;">
+            A análise exploratória dos dados revela padrões fundamentais sobre a saúde pública brasileira entre 2015 e 2024, evidenciando que as regiões que registram maior expectativa de vida e menores taxas de mortalidade estão diretamente correlacionadas com índices elevados de cobertura vacinal e grande densidade de recursos médicos.
+        </p>
+        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">
+            Através dos filtros interativos e da visualização gráfica, observa-se que desigualdades regionais ainda impactam a eficiência assistencial, demonstrando que investimentos contínuos em infraestrutura de atendimento e prevenção epidemiológica são determinantes cruciais para a mitigação de quadros críticos e para a melhoria geral da qualidade de vida populacional.
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
-st.markdown(
-    '<div class="html-card">'
-    '<div class="html-title">Conclusão</div>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O desenvolvimento deste painel analítico interativo traduziu a complexa base de dados de saúde pública em uma ferramenta digital moderna e visualmente de alto valor estratégico para a tomada de decisão. A aplicação integrada de Python, Streamlit e bibliotecas avançadas de visualização permitiu estruturar um ambiente robusto que une usabilidade e precisão técnica se consolidando como uma solução eficiente para a exploração e compreensão de cenários essenciais no contexto da saúde no Brasil.</p>'    '</div>',
-    unsafe_allow_html=True
-)
+# Conclusão (Em 1 parágrafo)
+st.markdown("""
+    <div class="html-card">
+        <div class="html-title">Conclusão</div>
+        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">
+            O desenvolvimento deste painel analítico interativo traduziu a complexa base de dados de saúde pública em uma ferramenta digital moderna e visualmente de alto valor estratégico para a tomada de decisão. A aplicação integrada de Python, Streamlit e bibliotecas avançadas de visualização permitiu estruturar um ambiente robusto que une usabilidade e precisão técnica se consolidando como uma solução eficiente para a exploração e compreensão de cenários essenciais no contexto da saúde no Brasil.
+        </p>
+    </div>
+""", unsafe_allow_html=True)

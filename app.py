@@ -24,14 +24,16 @@ st.markdown("""
         padding-top: 20px;
     }
     
-    /* Título Principal com tamanho bem grande e destacado */
-    h1 { 
+    /* Classe exclusiva para o Título Principal garantir tamanho grande e imponente */
+    .titulo-principal { 
         color: #ff7518 !important; 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        font-size: 80px !important; 
-        font-weight: 1000;
+        font-size: 50px !important; 
+        font-weight: 800 !important;
         letter-spacing: -0.5px;
-        margin-bottom: 5px;
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+        line-height: 1.2;
     }
     
     /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */
@@ -133,9 +135,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Título Principal com fonte bem maior
-st.markdown("<h1>Dashboard Executivo de Saúde Pública no Brasil</h1>", unsafe_allow_html=True)
-st.markdown("<div style='color: #b197fc; font-size: 16px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
+# Título Principal com a classe dedicada e Subtítulo
+st.markdown("<div class='titulo-principal'>Dashboard Executivo de Saúde Pública no Brasil</div>", unsafe_allow_html=True)
+st.markdown("<div style='color: #b197fc; font-size: 16px; margin-top: 8px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
 
 # Cartão de Identificação Obrigatória
 st.markdown(
@@ -162,7 +164,7 @@ except Exception as e:
 st.markdown(
     '<div class="html-card">'
     '<div class="html-title">Sobre o projeto</div>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, las taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país. A partir do tratamento da base de dados e da criação de indicadores dinâmicos, o projeto traduz informações complexas em visualizações claras e acessíveis por meio de um painel interativo publicado na web, facilitando a interpretação dos resultados e a compreensão de cenários essenciais para a área da saúde.</p>'
+    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, as taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país. A partir do tratamento da base de dados e da criação de indicadores dinâmicos, o projeto traduz informações complexas em visualizações claras e acessíveis por meio de um painel interativo publicado na web, facilitando a interpretação dos resultados e a compreensão de cenários essenciais para a área da saúde.</p>'
     '</div>',
     unsafe_allow_html=True
 )
@@ -229,7 +231,7 @@ def fig_to_base64(fig):
     plt.close(fig)
     return f"data:image/png;base64,{img_str}"
 
-# Gerando Gráfico 1
+# Gerando Gráfico 1 (Verde)
 fig1, ax1 = plt.subplots(figsize=(6, 4))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
@@ -244,16 +246,15 @@ ax1.xaxis.label.set_color('#c4b5fd')
 ax1.yaxis.label.set_color('#c4b5fd')
 ax1.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax1.set_ylabel("Média (Anos)", fontsize=12, fontweight='bold', color='#b197fc')
-ax1.set_title("Expectativa de Vida Média por Região", fontsize=10, fontweight='bold', color='#ce93d8', pad=12)
+ax1.set_title("Expectativa de Vida Média por Região", fontsize=13, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
-
-# Gerando Gráfico 2 (Roxo sólido exato #ab47bc sem transparência)
+# Gerando Gráfico 2 (Roxo #ab47bc)
 fig2, ax2 = plt.subplots(figsize=(6, 4))
 fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#2e7d32', alpha=1.0, ax=ax2, errorbar=None)
+sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#ab47bc', alpha=1.0, ax=ax2, errorbar=None)
 ax2.set_ylim(0, 15)
 ax2.spines['bottom'].set_color('#2d263b')
 ax2.spines['left'].set_color('#2d263b')
@@ -264,7 +265,7 @@ ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
 ax2.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax2.set_ylabel("Taxa Média", fontsize=12, fontweight='bold', color='#b197fc')
-ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=10, fontweight='bold', color='#ce93d8', pad=12)
+ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=13, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 

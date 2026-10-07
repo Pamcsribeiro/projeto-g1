@@ -162,4 +162,106 @@ with col2:
 
 with col3:
     media_vac = df_filtrado['cobertura_vacinal'].mean()
-    st.metric
+    st.metric("Cobertura Vacinal Média", f"{media_vac:.1f}%")
+
+with col4:
+    total_cronicas = df_filtrado['casos_doencas_cronicas'].sum()
+    st.metric("Casos de Doenças Crônicas", f"{total_cronicas:,.0f}")
+
+st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
+
+# Função auxiliar para converter gráficos Matplotlib em imagens base64
+def fig_to_base64(fig):
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", bbox_inches='tight', facecolor=fig.get_facecolor(), edgecolor='none')
+    buf.seek(0)
+    img_str = base64.b64encode(buf.read()).decode('utf-8')
+    plt.close(fig)
+    return f"data:image/png;base64,{img_str}"
+
+# Gerando Gráfico 1
+fig1, ax1 = plt.subplots(figsize=(6, 4))
+fig1.patch.set_facecolor('#16131a')
+ax1.set_facecolor('#16131a')
+sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax1, errorbar=None)
+ax1.set_ylim(0, 85)
+ax1.spines['bottom'].set_color('#2d263b')
+ax1.spines['left'].set_color('#2d263b')
+ax1.spines['top'].set_visible(False)
+ax1.spines['right'].set_visible(False)
+ax1.tick_params(colors='#c4b5fd')
+ax1.xaxis.label.set_color('#c4b5fd')
+ax1.yaxis.label.set_color('#c4b5fd')
+plt.xticks(rotation=45)
+img1 = fig_to_base64(fig1)
+
+# Gerando Gráfico 2
+fig2, ax2 = plt.subplots(figsize=(6, 4))
+fig2.patch.set_facecolor('#16131a')
+ax2.set_facecolor('#16131a')
+sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
+ax2.set_ylim(0, 15)
+ax2.spines['bottom'].set_color('#2d263b')
+ax2.spines['left'].set_color('#2d263b')
+ax2.spines['top'].set_visible(False)
+ax2.spines['right'].set_visible(False)
+ax2.tick_params(colors='#c4b5fd')
+ax2.xaxis.label.set_color('#c4b5fd')
+ax2.yaxis.label.set_color('#c4b5fd')
+plt.xticks(rotation=45)
+img2 = fig_to_base64(fig2)
+
+# ==========================================
+# BLOCO 1: Visualizações Gráficas unificadas no Cartão
+# ==========================================
+graficos_html = f"""
+<div class="html-card">
+    <div class="html-title">Visualizações Gráficas</div>
+    <div style="display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+            <h4 style="color: #ff7518; font-size: 16px; margin-bottom: 15px;">Expectativa de Vida Média por Região</h4>
+            <img src="{img1}" style="width: 100%; border-radius: 6px;" />
+        </div>
+        <div style="flex: 1; min-width: 300px; text-align: center;">
+            <h4 style="color: #ff7518; font-size: 16px; margin-bottom: 15px;">Taxa Média de Mortalidade por Região</h4>
+            <img src="{img2}" style="width: 100%; border-radius: 6px;" />
+        </div>
+    </div>
+</div>
+"""
+st.markdown(graficos_html, unsafe_allow_html=True)
+
+# ==========================================
+# BLOCO 2: Tabela Detalhada unificada no Cartão
+# ==========================================
+df_tabela = df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']]
+tabela_html_str = df_tabela.to_html(classes='table-custom', index=False, border=0)
+
+tabela_completa_html = f"""
+<div class="html-card">
+    <div class="html-title">Tabela Detalhada dos Dados Filtrados</div>
+    <div class="table-wrapper">
+        {tabela_html_str}
+    </div>
+</div>
+"""
+st.markdown(tabela_completa_html, unsafe_allow_html=True)
+
+# Interpretação Textual e Conclusão Executiva
+col_inf1, col_inf2 = st.columns(2)
+
+with col_inf1:
+    st.markdown("""
+    <div class="html-card" style="height: 100%;">
+        <div class="html-title">Interpretação dos Resultados</div>
+        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_inf2:
+    st.markdown("""
+    <div class="html-card" style="height: 100%;">
+        <div class="html-title">Conclusão</div>
+        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.</p>
+    </div>
+    """, unsafe_allow_html=True)

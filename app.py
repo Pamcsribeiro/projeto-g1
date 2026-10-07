@@ -13,15 +13,12 @@ st.set_page_config(
 # Estilização visual personalizada (Tema Escuro com detalhes em verde e roxo)
 st.markdown("""
     <style>
-    /* Fundo geral e cor do texto */
     .main { background-color: #0b090c; color: #e0dced; }
     [data-testid="stAppViewContainer"] { background-color: #0b090c; }
     [data-testid="stSidebar"] { background-color: #16131a; }
     
-    /* Títulos personalizados */
     h1, h2, h3 { color: #ff7518 !important; }
     
-    /* Cartões métricos (KPIs) com o verde do botão do HTML */
     .stMetric { 
         background-color: #16131a; 
         padding: 20px; 
@@ -33,15 +30,12 @@ st.markdown("""
     .stMetric label { color: #b197fc !important; font-weight: 500; }
     .stMetric div[data-testid="stMetricValue"] { color: #ff7518 !important; font-weight: bold; }
     
-    /* Textos gerais e rótulos */
     p, span, label { color: #c4b5fd !important; }
-    
-    /* Divisores */
     hr { border-color: #2d263b; }
     </style>
 """, unsafe_allow_html=True)
 
-# Cabeçalho de Identificação Obrigatória (alinhado com o HTML)
+# Cabeçalho de Identificação Obrigatória
 st.title("Dashboard Executivo de Saúde Pública no Brasil")
 st.markdown("""
 <div style="background-color: #16131a; padding: 20px; border-radius: 8px; border: 1px solid #2d263b; border-top: 3px solid #ff7518; margin-bottom: 25px;">
@@ -112,7 +106,7 @@ with col4:
 
 st.markdown("---")
 
-# Seção de Gráficos com alturas e larguras perfeitamente padronizadas
+# Seção de Gráficos com alturas rigorosamente idênticas (figsize=(7, 4.5))
 st.subheader("Visualizações Gráficas")
 
 plt.rcParams['text.color'] = '#c4b5fd'
@@ -137,17 +131,16 @@ with col_g1:
     st.pyplot(fig)
 
 with col_g2:
-    st.markdown("#### Evolução Temporal da Taxa de Mortalidade")
+    st.markdown("#### Distribuição da Taxa de Mortalidade por Região")
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
-    df_temporal = df_filtrado.groupby('ano')['taxa_mortalidade'].mean().reset_index()
-    sns.lineplot(data=df_temporal, x='ano', y='taxa_mortalidade', color='#9d4edd', marker='o', linewidth=2.5, ax=ax)
-    ax.set_ylim(3, 13)
+    sns.boxplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', palette='Set2', ax=ax)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
+    plt.xticks(rotation=45)
     st.pyplot(fig)
 
 st.markdown("---")

@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilização visual personalizada (Tema Escuro / Halloween Elegante idêntico ao HTML)
+# Estilização visual personalizada (Tema Escuro com detalhes em verde e roxo)
 st.markdown("""
     <style>
     /* Fundo geral e cor do texto */
@@ -21,18 +21,27 @@ st.markdown("""
     /* Títulos personalizados */
     h1, h2, h3 { color: #ff7518 !important; }
     
-  /* Cartões métricos (KPIs) com o mesmo visual dos cards do HTML */
+    /* Cartões métricos (KPIs) com o verde do botão do HTML */
     .stMetric { 
         background-color: #16131a; 
         padding: 20px; 
         border-radius: 8px; 
-        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.15); 
+        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.15); 
         border: 1px solid #2d263b;
-        border-top: 3px solid #ff7518; 
+        border-top: 3px solid #2e7d32; 
     }
     .stMetric label { color: #b197fc !important; font-weight: 500; }
     .stMetric div[data-testid="stMetricValue"] { color: #ff7518 !important; font-weight: bold; }
     
+    /* Estilização do slider em verde */
+    .stSlider [data-baseweb="slider"] div[role="slider"] {
+        background-color: #2e7d32 !important;
+        border-color: #2e7d32 !important;
+    }
+    .stSlider [data-baseweb="slider"] div {
+        background-color: #2e7d32 !important;
+    }
+
     /* Textos gerais e rótulos */
     p, span, label { color: #c4b5fd !important; }
     
@@ -152,9 +161,13 @@ with col_g2:
 
 st.markdown("---")
 
-# Tabela de Dados Detalhados
+# Tabela de Dados Detalhados (altura aumentada para exibir mais linhas de uma vez)
 st.subheader("Tabela Detalhada dos Dados Filtrados")
-st.dataframe(df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']], use_container_width=True)
+st.dataframe(
+    df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']], 
+    use_container_width=True, 
+    height=600
+)
 
 st.markdown("---")
 

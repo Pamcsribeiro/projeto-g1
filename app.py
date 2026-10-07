@@ -110,7 +110,7 @@ st.markdown("""
         background-color: #211a2d;
         color: #ff7518;
         padding: 6px 12px;
-        text-align: left;
+        text-align: center;
         border-bottom: 2px solid #ab47bc;
         font-weight: 600;
     }
@@ -118,6 +118,7 @@ st.markdown("""
         padding: 6px 12px;
         border-bottom: 1px solid #2d263b;
         color: #c4b5fd;
+        text-align: center;
     }
     .table-custom tr:hover {
         background-color: #211a2d;

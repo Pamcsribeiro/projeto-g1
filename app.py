@@ -12,7 +12,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilização visual avançada e refinada com fontes maiores nos títulos solicitados
+# Estilização visual avançada e refinada
 st.markdown("""
     <style>
     /* Fundo geral e da barra lateral */
@@ -24,12 +24,12 @@ st.markdown("""
         padding-top: 20px;
     }
     
-    /* Tipografia do Título Principal com tamanho aumentado */
+    /* Título Principal com tamanho bem grande e destacado */
     h1 { 
         color: #ff7518 !important; 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        font-size: 38px !important; 
-        font-weight: 700;
+        font-size: 42px !important; 
+        font-weight: 800;
         letter-spacing: -0.5px;
         margin-bottom: 5px;
     }
@@ -133,7 +133,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Título Principal com fonte maior e Subtítulo
+# Título Principal com fonte bem maior
 st.markdown("<h1>Dashboard Executivo de Saúde Pública no Brasil</h1>", unsafe_allow_html=True)
 st.markdown("<div style='color: #b197fc; font-size: 16px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
 
@@ -162,7 +162,7 @@ except Exception as e:
 st.markdown(
     '<div class="html-card">'
     '<div class="html-title">Sobre o projeto</div>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, as taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país. A partir do tratamento da base de dados e da criação de indicadores dinâmicos, o projeto traduz informações complexas em visualizações claras e acessíveis por meio de um painel interativo publicado na web, facilitando a interpretação dos resultados e a compreensão de cenários essenciais para a área da saúde.</p>'
+    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, las taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país. A partir do tratamento da base de dados e da criação de indicadores dinâmicos, o projeto traduz informações complexas em visualizações claras e acessíveis por meio de um painel interativo publicado na web, facilitando a interpretação dos resultados e a compreensão de cenários essenciais para a área da saúde.</p>'
     '</div>',
     unsafe_allow_html=True
 )
@@ -229,8 +229,8 @@ def fig_to_base64(fig):
     plt.close(fig)
     return f"data:image/png;base64,{img_str}"
 
-# Gerando Gráfico 1
-fig1, ax1 = plt.subplots(figsize=(6, 3.8))
+# Gerando Gráfico 1 (com título interno em destaque)
+fig1, ax1 = plt.subplots(figsize=(6, 4))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
 sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax1, errorbar=None)
@@ -239,16 +239,17 @@ ax1.spines['bottom'].set_color('#2d263b')
 ax1.spines['left'].set_color('#2d263b')
 ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
-ax1.tick_params(colors='#c4b5fd', labelsize=10)
+ax1.tick_params(colors='#c4b5fd', labelsize=11)
 ax1.xaxis.label.set_color('#c4b5fd')
 ax1.yaxis.label.set_color('#c4b5fd')
-ax1.set_xlabel("Região", fontsize=11, fontweight='bold', color='#b197fc')
-ax1.set_ylabel("Média (Anos)", fontsize=11, fontweight='bold', color='#b197fc')
+ax1.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
+ax1.set_ylabel("Média (Anos)", fontsize=12, fontweight='bold', color='#b197fc')
+ax1.set_title("Expectativa de Vida Média por Região", fontsize=15, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
-# Gerando Gráfico 2
-fig2, ax2 = plt.subplots(figsize=(6, 3.8))
+# Gerando Gráfico 2 (com título interno em destaque)
+fig2, ax2 = plt.subplots(figsize=(6, 4))
 fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
 sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
@@ -257,27 +258,26 @@ ax2.spines['bottom'].set_color('#2d263b')
 ax2.spines['left'].set_color('#2d263b')
 ax2.spines['top'].set_visible(False)
 ax2.spines['right'].set_visible(False)
-ax2.tick_params(colors='#c4b5fd', labelsize=10)
+ax2.tick_params(colors='#c4b5fd', labelsize=11)
 ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
-ax2.set_xlabel("Região", fontsize=11, fontweight='bold', color='#b197fc')
-ax2.set_ylabel("Taxa Média", fontsize=11, fontweight='bold', color='#b197fc')
+ax2.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
+ax2.set_ylabel("Taxa Média", fontsize=12, fontweight='bold', color='#b197fc')
+ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=15, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 
 # ==========================================
-# BLOCO 1: Visualizações Gráficas unificadas no Cartão (com fontes maiores nos títulos dos gráficos)
+# BLOCO 1: Visualizações Gráficas unificadas no Cartão
 # ==========================================
 graficos_html = f"""
 <div class="html-card">
     <div class="html-title">Visualizações Gráficas</div>
     <div style="display: flex; gap: 20px; justify-content: space-between; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <h4 style="color: #ff7518; font-size: 18px !important; margin-bottom: 12px; font-weight: 700;">Expectativa de Vida Média por Região</h4>
             <img src="{img1}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
         </div>
         <div style="flex: 1; min-width: 300px; text-align: center;">
-            <h4 style="color: #ff7518; font-size: 18px !important; margin-bottom: 12px; font-weight: 700;">Taxa Média de Mortalidade por Região</h4>
             <img src="{img2}" style="width: 100%; border-radius: 6px; border: 1px solid #2d263b;" />
         </div>
     </div>

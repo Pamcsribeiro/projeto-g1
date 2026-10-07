@@ -123,7 +123,7 @@ st.markdown("""
         background-color: #211a2d;
     }
     .table-wrapper {
-        max-height: 450px;
+        max-height: 800px;
         overflow-y: auto;
         border-radius: 6px;
         border: 1px solid #2d263b;

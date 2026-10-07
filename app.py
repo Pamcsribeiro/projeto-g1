@@ -46,17 +46,35 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(157, 78, 221, 0.1);
     }
     
-    /* Cartões métricos (KPIs) com o verde do botão do HTML */
-    .stMetric { 
-        background-color: #0b090c !important; 
-        padding: 20px !important; 
-        border-radius: 8px !important; 
-        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.15) !important; 
-        border: 1px solid #2d263b !important;
-        border-top: 3px solid #2e7d32 !important; 
+    /* Cartões internos de KPI dentro do bloco unificado */
+    .kpi-container {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
-    .stMetric label { color: #b197fc !important; font-weight: 500; }
-    .stMetric div[data-testid="stMetricValue"] { color: #ff7518 !important; font-weight: bold; }
+    .kpi-box {
+        flex: 1;
+        min-width: 220px;
+        background-color: #0b090c;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #2d263b;
+        border-top: 3px solid #2e7d32;
+        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.15);
+        text-align: left;
+    }
+    .kpi-label {
+        color: #b197fc;
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    .kpi-value {
+        color: #ff7518;
+        font-weight: bold;
+        font-size: 26px;
+    }
     
     /* Textos gerais e parágrafos justificados */
     p, span, label, .stMarkdown { color: #c4b5fd !important; line-height: 1.6; }
@@ -149,30 +167,37 @@ ano_selecionado = st.sidebar.slider("Selecione o Ano:", min_value=int(anos[0]), 
 df_filtrado = df_filtrado[(df_filtrado['ano'] >= ano_selecionado[0]) & (df_filtrado['ano'] <= ano_selecionado[1])]
 
 # ==========================================
-# BLOCO DE KPIS DENTRO DO CARTÃO UNIFICADO
+# BLOCO DE KPIS UNIFICADO NO CARTÃO
 # ==========================================
-st.markdown('<div class="html-card">', unsafe_allow_html=True)
-st.markdown('<div class="html-title">Indicadores Chave de Desempenho (KPIs)</div>', unsafe_allow_html=True)
+media_esp = df_filtrado['expectativa_vida'].mean()
+media_mort = df_filtrado['taxa_mortalidade'].mean()
+media_vac = df_filtrado['cobertura_vacinal'].mean()
+total_cronicas = df_filtrado['casos_doencas_cronicas'].sum()
 
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    media_esp = df_filtrado['expectativa_vida'].mean()
-    st.metric("Expectativa de Vida Média", f"{media_esp:.1f} anos")
-
-with col2:
-    media_mort = df_filtrado['taxa_mortalidade'].mean()
-    st.metric("Taxa Média de Mortalidade", f"{media_mort:.2f}")
-
-with col3:
-    media_vac = df_filtrado['cobertura_vacinal'].mean()
-    st.metric("Cobertura Vacinal Média", f"{media_vac:.1f}%")
-
-with col4:
-    total_cronicas = df_filtrado['casos_doencas_cronicas'].sum()
-    st.metric("Casos de Doenças Crônicas", f"{total_cronicas:,.0f}")
-
-st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão de KPIs
+kpi_html = f"""
+<div class="html-card">
+    <div class="html-title">Indicadores Chave de Desempenho (KPIs)</div>
+    <div class="kpi-container">
+        <div class="kpi-box">
+            <div class="kpi-label">Expectativa de Vida Média</div>
+            <div class="kpi-value">{media_esp:.1f} anos</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-label">Taxa Média de Mortalidade</div>
+            <div class="kpi-value">{media_mort:.2f}</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-label">Cobertura Vacinal Média</div>
+            <div class="kpi-value">{media_vac:.1f}%</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-label">Casos de Doenças Crônicas</div>
+            <div class="kpi-value">{total_cronicas:,.0f}</div>
+        </div>
+    </div>
+</div>
+"""
+st.markdown(kpi_html, unsafe_allow_html=True)
 
 # Função auxiliar para converter gráficos Matplotlib em imagens base64
 def fig_to_base64(fig):
@@ -258,14 +283,4 @@ with col_inf1:
     st.markdown("""
     <div class="html-card" style="height: 100%;">
         <div class="html-title">Interpretação dos Resultados</div>
-        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col_inf2:
-    st.markdown("""
-    <div class="html-card" style="height: 100%;">
-        <div class="html-title">Conclusão</div>
-        <p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.</p>
-    </div>
-    """, unsafe_allow_html=True)
+        <p class="texto-justificado" style="color: #c4b5fd; margin:

@@ -89,7 +89,7 @@ except Exception as e:
     st.error(f"Erro ao carregar o arquivo de dados: {e}")
     st.stop()
 
-# Seção: Sobre o Projeto (dentro do cartão)
+# Seção: Sobre o Projeto
 st.markdown("""
 <div class="html-card">
     <div class="html-title">Sobre o projeto</div>
@@ -140,7 +140,7 @@ with col4:
 st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
 
 # ==========================================
-# BLOCO 1: Visualizações Gráficas (Cartão Único)
+# BLOCO 1: Visualizações Gráficas (Cartão Único com Título e Gráficos dentro)
 # ==========================================
 st.markdown('<div class="html-card">', unsafe_allow_html=True)
 st.markdown('<div class="html-title">Visualizações Gráficas</div>', unsafe_allow_html=True)
@@ -180,10 +180,10 @@ with col_g2:
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
-st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão de gráficos
+st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão unificado de gráficos
 
 # ==========================================
-# BLOCO 2: Tabela Detalhada (Cartão Único)
+# BLOCO 2: Tabela Detalhada (Cartão Único com Título e Tabela dentro)
 # ==========================================
 st.markdown('<div class="html-card">', unsafe_allow_html=True)
 st.markdown('<div class="html-title">Tabela Detalhada dos Dados Filtrados</div>', unsafe_allow_html=True)
@@ -194,7 +194,7 @@ st.dataframe(
     height=500
 )
 
-st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão da tabela
+st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão unificado da tabela
 
 # Interpretação Textual e Conclusão Executiva
 col_inf1, col_inf2 = st.columns(2)

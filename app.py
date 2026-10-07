@@ -117,7 +117,7 @@ plt.rcParams['ytick.color'] = '#c4b5fd'
 col_g1, col_g2 = st.columns(2)
 
 with col_g1:
-    st.markdown("#### Expectativa de Vida por Região")
+    st.markdown("#### Expectativa de Vida Média por Região")
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
@@ -131,16 +131,17 @@ with col_g1:
     st.pyplot(fig)
 
 with col_g2:
-    st.markdown("#### Relação entre Médicos e Mortalidade")
+    st.markdown("#### Cobertura Vacinal Média por Região (%)")
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
-    sns.regplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', color='#9d4edd', scatter_kws={'alpha':0.4, 's':20}, line_kws={'color':'#ff7518', 'linewidth':2}, ax=ax)
-    ax.set_ylim(3, 13)
+    sns.barplot(data=df_filtrado, x='regiao', y='cobertura_vacinal', color='#9d4edd', ax=ax, errorbar=None)
+    ax.set_ylim(0, 100)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
+    plt.xticks(rotation=45)
     st.pyplot(fig)
 
 st.markdown("---")

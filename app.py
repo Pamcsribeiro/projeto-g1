@@ -25,7 +25,7 @@ st.markdown("""
     .html-title {
         color: #ff7518 !important; 
         font-size: 20px; 
-        margin-top: 35px; 
+        margin-top: 10px; 
         margin-bottom: 15px; 
         border-left: 4px solid #ab47bc; 
         padding-left: 12px;
@@ -38,7 +38,7 @@ st.markdown("""
         background: #16131a;
         padding: 25px;
         border-radius: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         border: 1px solid #2d263b;
         border-top: 3px solid #ff7518;
         box-shadow: 0 4px 15px rgba(157, 78, 221, 0.1);
@@ -71,7 +71,7 @@ st.markdown("<div style='color: #b197fc; font-size: 16px; margin-bottom: 30px; f
 
 # Cartão de Identificação Obrigatória (igual ao HTML)
 st.markdown("""
-<div class="info-card" style="background: #16131a; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #2d263b; border-top: 3px solid #ff7518;">
+<div class="info-card" style="background: #16131a; padding: 25px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #2d263b; border-top: 3px solid #ff7518;">
     <p style="margin: 8px 0; color: #c4b5fd;"><strong>Disciplina:</strong> Linguagem de Programação</p>
     <p style="margin: 8px 0; color: #c4b5fd;"><strong>Professor:</strong> Alexandre Neves Louzada</p>
     <p style="margin: 8px 0; color: #c4b5fd;"><strong>Aluna:</strong> Pâmela Cristina Ribeiro de Souza</p>
@@ -89,7 +89,7 @@ except Exception as e:
     st.error(f"Erro ao carregar o arquivo de dados: {e}")
     st.stop()
 
-# Seção: Sobre o Projeto
+# Seção: Sobre o Projeto (dentro do cartão)
 st.markdown("""
 <div class="html-card">
     <div class="html-title" style="margin-top: 0;">Sobre o projeto</div>
@@ -117,7 +117,7 @@ ano_selecionado = st.sidebar.slider("Selecione o Ano:", min_value=int(anos[0]), 
 
 df_filtrado = df_filtrado[(df_filtrado['ano'] >= ano_selecionado[0]) & (df_filtrado['ano'] <= ano_selecionado[1])]
 
-# Seção de KPIs Dinâmicos
+# Seção de KPIs Dinâmicos (com título e cartão geral)
 st.markdown("<div class='html-title'>Indicadores Chave de Desempenho (KPIs)</div>", unsafe_allow_html=True)
 col1, col2, col3, col4 = st.columns(4)
 
@@ -137,10 +137,13 @@ with col4:
     total_cronicas = df_filtrado['casos_doencas_cronicas'].sum()
     st.metric("Casos de Doenças Crônicas", f"{total_cronicas:,.0f}")
 
-st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
 
-# Seção de Gráficos com alturas rigorosamente idênticas (figsize=(7, 4.5))
-st.markdown("<div class='html-title'>Visualizações Gráficas</div>", unsafe_allow_html=True)
+# Seção de Gráficos dentro de um Cartão Único englobando ambos os gráficos
+st.markdown("""
+<div class="html-card">
+    <div class="html-title" style="margin-top: 0;">Visualizações Gráficas</div>
+""", unsafe_allow_html=True)
 
 plt.rcParams['text.color'] = '#c4b5fd'
 plt.rcParams['axes.labelcolor'] = '#c4b5fd'
@@ -151,7 +154,7 @@ col_g1, col_g2 = st.columns(2)
 
 with col_g1:
     st.markdown("<h4 style='color: #ff7518; font-size: 16px;'>Expectativa de Vida Média por Região</h4>", unsafe_allow_html=True)
-    fig, ax = plt.subplots(figsize=(7, 4.5))
+    fig, ax = plt.subplots(figsize=(6.5, 4.2))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
     sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax, errorbar=None)
@@ -165,7 +168,7 @@ with col_g1:
 
 with col_g2:
     st.markdown("<h4 style='color: #ff7518; font-size: 16px;'>Taxa Média de Mortalidade por Região</h4>", unsafe_allow_html=True)
-    fig, ax = plt.subplots(figsize=(7, 4.5))
+    fig, ax = plt.subplots(figsize=(6.5, 4.2))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
     sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax, errorbar=None)
@@ -177,19 +180,23 @@ with col_g2:
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
-st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True) # Fim do cartão de gráficos
 
-# Tabela de Dados Detalhados
-st.markdown("<div class='html-title'>Tabela Detalhada dos Dados Filtrados</div>", unsafe_allow_html=True)
+# Seção da Tabela Detalhada dentro de um Cartão Único englobando toda a tabela
+st.markdown("""
+<div class="html-card">
+    <div class="html-title" style="margin-top: 0;">Tabela Detalhada dos Dados Filtrados</div>
+""", unsafe_allow_html=True)
+
 st.dataframe(
     df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']], 
     use_container_width=True, 
-    height=600
+    height=500
 )
 
-st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True) # Fim do cartão da tabela
 
-# Interpretação Textual e Conclusão Executiva (dentro de cartões HTML)
+# Interpretação Textual e Conclusão Executiva
 col_inf1, col_inf2 = st.columns(2)
 
 with col_inf1:

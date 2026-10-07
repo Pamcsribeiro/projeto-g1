@@ -48,7 +48,7 @@ st.markdown("""
     
     /* Cartões métricos (KPIs) com o verde do botão do HTML */
     .stMetric { 
-        background-color: #16131a !important; 
+        background-color: #0b090c !important; 
         padding: 20px !important; 
         border-radius: 8px !important; 
         box-shadow: 0 4px 15px rgba(46, 125, 50, 0.15) !important; 
@@ -148,8 +148,12 @@ ano_selecionado = st.sidebar.slider("Selecione o Ano:", min_value=int(anos[0]), 
 
 df_filtrado = df_filtrado[(df_filtrado['ano'] >= ano_selecionado[0]) & (df_filtrado['ano'] <= ano_selecionado[1])]
 
-# Seção de KPIs Dinâmicos
-st.markdown("<div class='html-title' style='margin-top: 15px;'>Indicadores Chave de Desempenho (KPIs)</div>", unsafe_allow_html=True)
+# ==========================================
+# BLOCO DE KPIS DENTRO DO CARTÃO UNIFICADO
+# ==========================================
+st.markdown('<div class="html-card">', unsafe_allow_html=True)
+st.markdown('<div class="html-title">Indicadores Chave de Desempenho (KPIs)</div>', unsafe_allow_html=True)
+
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -168,7 +172,7 @@ with col4:
     total_cronicas = df_filtrado['casos_doencas_cronicas'].sum()
     st.metric("Casos de Doenças Crônicas", f"{total_cronicas:,.0f}")
 
-st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True) # Fim do cartão de KPIs
 
 # Função auxiliar para converter gráficos Matplotlib em imagens base64
 def fig_to_base64(fig):

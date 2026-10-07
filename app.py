@@ -62,6 +62,35 @@ st.markdown("""
     p, span, label, .stMarkdown { color: #c4b5fd !important; line-height: 1.6; }
     .texto-justificado { text-align: justify; }
     
+    /* Estilização da Tabela Customizada */
+    .table-custom {
+        width: 100%;
+        color: #e0dced;
+        border-collapse: collapse;
+        font-size: 14px;
+        background-color: #16131a;
+    }
+    .table-custom th {
+        background-color: #211a2d;
+        color: #ff7518;
+        padding: 12px;
+        text-align: left;
+        border-bottom: 2px solid #ab47bc;
+    }
+    .table-custom td {
+        padding: 10px;
+        border-bottom: 1px solid #2d263b;
+        color: #c4b5fd;
+    }
+    .table-custom tr:hover {
+        background-color: #211a2d;
+    }
+    .table-wrapper {
+        max-height: 500px;
+        overflow-y: auto;
+        border-radius: 6px;
+    }
+
     /* Divisores */
     hr { border-color: #2d263b; margin: 30px 0; }
     </style>
@@ -133,59 +162,4 @@ with col2:
 
 with col3:
     media_vac = df_filtrado['cobertura_vacinal'].mean()
-    st.metric("Cobertura Vacinal Média", f"{media_vac:.1f}%")
-
-with col4:
-    total_cronicas = df_filtrado['casos_doencas_cronicas'].sum()
-    st.metric("Casos de Doenças Crônicas", f"{total_cronicas:,.0f}")
-
-st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
-
-# Função auxiliar para converter gráficos Matplotlib em imagens base64
-def fig_to_base64(fig):
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", bbox_inches='tight', facecolor=fig.get_facecolor(), edgecolor='none')
-    buf.seek(0)
-    img_str = base64.b64encode(buf.read()).decode('utf-8')
-    plt.close(fig)
-    return f"data:image/png;base64,{img_str}"
-
-# Gerando Gráfico 1
-fig1, ax1 = plt.subplots(figsize=(6, 4))
-fig1.patch.set_facecolor('#16131a')
-ax1.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax1, errorbar=None)
-ax1.set_ylim(0, 85)
-ax1.spines['bottom'].set_color('#2d263b')
-ax1.spines['left'].set_color('#2d263b')
-ax1.spines['top'].set_visible(False)
-ax1.spines['right'].set_visible(False)
-ax1.tick_params(colors='#c4b5fd')
-ax1.xaxis.label.set_color('#c4b5fd')
-ax1.yaxis.label.set_color('#c4b5fd')
-plt.xticks(rotation=45)
-img1 = fig_to_base64(fig1)
-
-# Gerando Gráfico 2
-fig2, ax2 = plt.subplots(figsize=(6, 4))
-fig2.patch.set_facecolor('#16131a')
-ax2.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax2, errorbar=None)
-ax2.set_ylim(0, 15)
-ax2.spines['bottom'].set_color('#2d263b')
-ax2.spines['left'].set_color('#2d263b')
-ax2.spines['top'].set_visible(False)
-ax2.spines['right'].set_visible(False)
-ax2.tick_params(colors='#c4b5fd')
-ax2.xaxis.label.set_color('#c4b5fd')
-ax2.yaxis.label.set_color('#c4b5fd')
-plt.xticks(rotation=45)
-img2 = fig_to_base64(fig2)
-
-# ==========================================
-# BLOCO 1: Visualizações Gráficas unificadas no Cartão
-# ==========================================
-st.markdown(f"""
-<div class="html-card">
-    <div class="html-title">Visualizações Gráficas</div>
-    <div style="display: flex; gap
+    st.metric

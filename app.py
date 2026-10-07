@@ -29,7 +29,7 @@ st.markdown("""
         color: #ff7518 !important; 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         font-size: 80px !important; 
-        font-weight: 800;
+        font-weight: 1000;
         letter-spacing: -0.5px;
         margin-bottom: 5px;
     }
@@ -229,11 +229,11 @@ def fig_to_base64(fig):
     plt.close(fig)
     return f"data:image/png;base64,{img_str}"
 
-# Gerando Gráfico 1 (com título interno em destaque)
+# Gerando Gráfico 1
 fig1, ax1 = plt.subplots(figsize=(6, 4))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#ff7518', ax=ax1, errorbar=None)
+sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#2e7d32', ax=ax1, errorbar=None)
 ax1.set_ylim(0, 85)
 ax1.spines['bottom'].set_color('#2d263b')
 ax1.spines['left'].set_color('#2d263b')
@@ -244,7 +244,7 @@ ax1.xaxis.label.set_color('#c4b5fd')
 ax1.yaxis.label.set_color('#c4b5fd')
 ax1.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax1.set_ylabel("Média (Anos)", fontsize=12, fontweight='bold', color='#b197fc')
-ax1.set_title("Expectativa de Vida Média por Região", fontsize=10, fontweight='bold', color='#2e7d32', pad=12)
+ax1.set_title("Expectativa de Vida Média por Região", fontsize=10, fontweight='bold', color='#ab47bc', pad=12)
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
@@ -263,7 +263,7 @@ ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
 ax2.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax2.set_ylabel("Taxa Média", fontsize=12, fontweight='bold', color='#b197fc')
-ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=10, fontweight='bold', color='#2e7d32', pad=12)
+ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=10, fontweight='bold', color='#ab47bc', pad=12)
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 

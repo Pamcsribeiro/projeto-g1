@@ -131,16 +131,16 @@ with col_g1:
     st.pyplot(fig)
 
 with col_g2:
-    st.markdown("#### Distribuição da Taxa de Mortalidade por Região")
+    st.markdown("#### Relação entre Médicos e Mortalidade")
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
-    sns.boxplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', palette='Set2', ax=ax)
+    sns.regplot(data=df_filtrado, x='medicos_por_1000', y='taxa_mortalidade', color='#9d4edd', scatter_kws={'alpha':0.4, 's':20}, line_kws={'color':'#ff7518', 'linewidth':2}, ax=ax)
+    ax.set_ylim(3, 13)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    plt.xticks(rotation=45)
     st.pyplot(fig)
 
 st.markdown("---")

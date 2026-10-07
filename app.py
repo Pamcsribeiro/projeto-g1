@@ -131,12 +131,12 @@ with col_g1:
     st.pyplot(fig)
 
 with col_g2:
-    st.markdown("#### Cobertura Vacinal Média por Região (%)")
+    st.markdown("#### Taxa Média de Mortalidade por Região")
     fig, ax = plt.subplots(figsize=(7, 4.5))
     fig.patch.set_facecolor('#16131a')
     ax.set_facecolor('#16131a')
-    sns.barplot(data=df_filtrado, x='regiao', y='cobertura_vacinal', color='#9d4edd', ax=ax, errorbar=None)
-    ax.set_ylim(0, 100)
+    sns.barplot(data=df_filtrado, x='regiao', y='taxa_mortalidade', color='#9d4edd', ax=ax, errorbar=None)
+    ax.set_ylim(0, 15)
     ax.spines['bottom'].set_color('#2d263b')
     ax.spines['left'].set_color('#2d263b')
     ax.spines['top'].set_visible(False)

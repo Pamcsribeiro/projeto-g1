@@ -158,11 +158,11 @@ def carregar_dados():
 
 try:
     df = carregar_dados()
-df['regiao'] = df['regiao'].str.replace('Centro-Oeste', 'Centro\u2003Oeste')
+    df['regiao'] = df['regiao'].str.replace('Centro-Oeste', r'Centro\u2003Oeste')
 except Exception as e:
     st.error(f"Erro ao carregar o arquivo de dados: {e}")
     st.stop()
-
+    
 # Seção: Sobre o Projeto
 st.markdown(
     '<div class="html-card">'

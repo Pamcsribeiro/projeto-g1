@@ -237,7 +237,7 @@ def fig_to_base64(fig):
 fig1, ax1 = plt.subplots(figsize=(7.5, 3.8))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
-sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#00FF66', ax=ax1, errorbar=None)
+sns.barplot(data=df_filtrado, x='regiao', y='expectativa_vida', color='#39FF14', ax=ax1, errorbar=None)
 ax1.set_ylim(0, 85)
 ax1.spines['bottom'].set_color('#2d263b')
 ax1.spines['left'].set_color('#2d263b')

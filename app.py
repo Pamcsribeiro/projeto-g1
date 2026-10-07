@@ -5,17 +5,13 @@ import seaborn as sns
 import io
 import base64
 
-# Configuração da página do Streamlit
 st.set_page_config(
     page_title="Dashboard Executivo - Saúde Pública no Brasil",
     page_icon="📊",
     layout="wide"
 )
-
-# Estilização visual avançada e refinada
 st.markdown("""
     <style>
-    /* Fundo geral e da barra lateral */
     .main { background-color: #0b090c; color: #e0dced; }
     [data-testid="stAppViewContainer"] { background-color: #0b090c; padding-top: 1rem; }
     [data-testid="stSidebar"] { 
@@ -23,8 +19,6 @@ st.markdown("""
         border-right: 1px solid #2d263b; 
         padding-top: 20px;
     }
-    
-    /* Classe exclusiva para o Título Principal garantir tamanho grande e imponente */
     .titulo-principal { 
         color: #ff7518 !important; 
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -37,8 +31,6 @@ st.markdown("""
         border-bottom: 2px solid #9d4edd; 
         text-shadow: 0 0 10px rgba(255, 117, 24, 0.4);
     }
-    
-    /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */
     .html-title {
         color: #ff7518 !important; 
         font-size: 24px; 
@@ -50,8 +42,6 @@ st.markdown("""
         font-weight: bold;
         letter-spacing: 0.3px;
     }
-
-    /* Estilo dos blocos/cartões refinados igual ao HTML (.section-card) */
     .html-card {
         background: #16131a;
         padding: 25px;
@@ -61,8 +51,6 @@ st.markdown("""
         border-top: 3px solid #ff7518;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
-    
-    /* Cartões internos de KPI unificados e elegantes */
     .kpi-container {
         display: flex;
         gap: 16px;
@@ -93,12 +81,8 @@ st.markdown("""
         font-weight: bold;
         font-size: 24px;
     }
-    
-    /* Textos gerais e parágrafos justificados */
-    p, span, label, .stMarkdown { color: #c4b5fd !important; line-height: 1.6; font-size: 14px; }
-    .texto-justificado { text-align: justify; }
-    
-    /* Estilização da Tabela Customizada */
+    p, span, label, .stMarkdown { color: #c4b5fd !important; line-height: 1.6; font-size: 14px;}
+    .texto-justificado { text-align: justify;}
     .table-custom {
         width: 100%;
         color: #e0dced;
@@ -129,20 +113,14 @@ st.markdown("""
         border-radius: 6px;
         border: 1px solid #2d263b;
     }
-
-    /* Ajustes visuais para os seletores da barra lateral */
     .stSelectbox label, .stSlider label { color: #b197fc !important; font-weight: 500; }
-    
-    /* Divisores */
     hr { border-color: #2d263b; margin: 30px 0; }
     </style>
 """, unsafe_allow_html=True)
 
-# Título Principal com a classe dedicada e Subtítulo
 st.markdown("<div class='titulo-principal'>Dashboard Executivo de Saúde Pública no Brasil</div>", unsafe_allow_html=True)
 st.markdown("<div style='color: #b197fc; font-size: 16px; margin-top: 8px; margin-bottom: 25px; font-weight: 500;'>Projeto de Análise e Visualização de Dados • Tema 23</div>", unsafe_allow_html=True)
 
-# Cartão de Identificação Obrigatória
 st.markdown(
     '<div class="html-card">'
     '<p style="margin: 6px 0; color: #c4b5fd;"><strong>Disciplina:</strong> Linguagem de Programação</p>'
@@ -152,7 +130,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Carregamento dos dados
 @st.cache_data
 def carregar_dados():
     return pd.read_csv("dados/simulacao_saude_publica_brasil.csv")
@@ -163,7 +140,6 @@ except Exception as e:
     st.error(f"Erro ao carregar o arquivo de dados: {e}")
     st.stop()
     
-# Seção: Sobre o Projeto
 st.markdown(
     '<div class="html-card">'
     '<div class="html-title">Sobre o projeto</div>'
@@ -172,7 +148,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Barra Lateral (Filtros Interativos)
 st.sidebar.header("Filtros de Análise")
 
 regioes = sorted(df['regiao'].unique())
@@ -192,9 +167,6 @@ ano_selecionado = st.sidebar.slider("Selecione o Ano:", min_value=int(anos[0]), 
 
 df_filtrado = df_filtrado[(df_filtrado['ano'] >= ano_selecionado[0]) & (df_filtrado['ano'] <= ano_selecionado[1])]
 
-# ==========================================
-# BLOCO DE KPIS UNIFICADO NO CARTÃO
-# ==========================================
 media_esp = df_filtrado['expectativa_vida'].mean()
 media_mort = df_filtrado['taxa_mortalidade'].mean()
 media_vac = df_filtrado['cobertura_vacinal'].mean()
@@ -225,7 +197,6 @@ kpi_html = f"""
 """
 st.markdown(kpi_html, unsafe_allow_html=True)
 
-# Função auxiliar para converter gráficos Matplotlib em imagens base64 com alta nitidez
 def fig_to_base64(fig):
     buf = io.BytesIO()
     fig.savefig(buf, format="png", bbox_inches='tight', facecolor=fig.get_facecolor(), edgecolor='none', dpi=120)
@@ -234,7 +205,6 @@ def fig_to_base64(fig):
     plt.close(fig)
     return f"data:image/png;base64,{img_str}"
 
-# Gerando Gráfico 1 (Verde)
 fig1, ax1 = plt.subplots(figsize=(7.5, 3.8))
 fig1.patch.set_facecolor('#16131a')
 ax1.set_facecolor('#16131a')
@@ -254,7 +224,6 @@ titulo1.set_color('#b197fc')
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
-# Gerando Gráfico 2 (Roxo #ab47bc)
 fig2, ax2 = plt.subplots(figsize=(7.5, 3.8))
 fig2.patch.set_facecolor('#16131a')
 ax2.set_facecolor('#16131a')
@@ -274,9 +243,6 @@ titulo2.set_color('#b197fc')
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 
-# ==========================================
-# BLOCO 1: Visualizações Gráficas unificadas no Cartão
-# ==========================================
 graficos_html = f"""
 <div class="html-card">
     <div class="html-title">Visualizações Gráficas</div>
@@ -292,9 +258,6 @@ graficos_html = f"""
 """
 st.markdown(graficos_html, unsafe_allow_html=True)
 
-# ==========================================
-# BLOCO 2: Tabela Detalhada unificada no Cartão
-# ==========================================
 df_tabela = df_filtrado[['ano', 'regiao', 'uf', 'municipio', 'expectativa_vida', 'taxa_mortalidade', 'cobertura_vacinal', 'nivel_criticidade']]
 tabela_html_str = df_tabela.to_html(classes='table-custom', index=False, border=0)
 
@@ -308,7 +271,6 @@ tabela_completa_html = f"""
 """
 st.markdown(tabela_completa_html, unsafe_allow_html=True)
 
-# Interpretação dos Resultados (Dividida em 2 parágrafos)
 st.markdown("""
     <div class="html-card">
         <div class="html-title">Interpretação dos Resultados</div>
@@ -321,7 +283,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Conclusão (Em 1 parágrafo)
 st.markdown("""
     <div class="html-card">
         <div class="html-title">Conclusão</div>

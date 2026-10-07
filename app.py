@@ -109,13 +109,13 @@ st.markdown("""
     .table-custom th {
         background-color: #211a2d;
         color: #ff7518;
-        padding: 12px;
+        padding: 6px 12px;
         text-align: left;
         border-bottom: 2px solid #ab47bc;
         font-weight: 600;
     }
     .table-custom td {
-        padding: 10px 12px;
+        padding: 6px 12px;
         border-bottom: 1px solid #2d263b;
         color: #c4b5fd;
     }

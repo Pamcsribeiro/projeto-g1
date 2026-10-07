@@ -41,7 +41,7 @@ st.markdown("""
     /* Padrão idêntico ao HTML para todos os títulos com a barra lateral roxa e texto laranja */
     .html-title {
         color: #ff7518 !important; 
-        font-size: 20px; 
+        font-size: 24px; 
         margin-top: 0px; 
         margin-bottom: 20px; 
         border-left: 4px solid #ab47bc; 
@@ -248,7 +248,7 @@ ax1.xaxis.label.set_color('#c4b5fd')
 ax1.yaxis.label.set_color('#c4b5fd')
 ax1.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax1.set_ylabel("Média (Anos)", fontsize=12, fontweight='bold', color='#b197fc')
-ax1.set_title("Expectativa de Vida Média por Região", fontsize=13, fontweight='bold', color='#ff7518', pad=12)
+ax1.set_title("Expectativa de Vida Média por Região", fontsize=10, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img1 = fig_to_base64(fig1)
 
@@ -267,7 +267,7 @@ ax2.xaxis.label.set_color('#c4b5fd')
 ax2.yaxis.label.set_color('#c4b5fd')
 ax2.set_xlabel("Região", fontsize=12, fontweight='bold', color='#b197fc')
 ax2.set_ylabel("Taxa Média", fontsize=12, fontweight='bold', color='#b197fc')
-ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=13, fontweight='bold', color='#ff7518', pad=12)
+ax2.set_title("Taxa Média de Mortalidade por Região", fontsize=10, fontweight='bold', color='#ff7518', pad=12)
 plt.xticks(rotation=0)
 img2 = fig_to_base64(fig2)
 

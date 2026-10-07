@@ -309,7 +309,7 @@ st.markdown(tabela_completa_html, unsafe_allow_html=True)
 st.markdown(
     '<div class="html-card">'
     '<div class="html-title">Interpretação dos Resultados</div>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">A análise exploratória evidencia que os municípios com maior densidade de médicos e taxas de cobertura vacinal mais consistentes apresentam índices reduzidos de criticidade e maior expectativa de vida populacional.</p>'
+    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">A análise exploratória dos dados consolidados revela padrões fundamentais sobre a dinâmica da saúde pública brasileira entre 2015 e 2024, evidenciando que as regiões que registram maior expectativa de vida e menores taxas de mortalidade estão diretamente correlacionadas com índices elevados de cobertura vacinal e robusta densidade de recursos médicos. Através dos filtros interativos e da visualização gráfica, observa-se que desigualdades regionais ainda impactam a eficiência assistencial, demonstrando que investimentos contínuos em infraestrutura de atendimento e prevenção epidemiológica são determinantes cruciais para a mitigação de quadros de criticidade e para a melhoria geral da qualidade de vida populacional.</p>'
     '</div>',
     unsafe_allow_html=True
 )
@@ -317,7 +317,7 @@ st.markdown(
 st.markdown(
     '<div class="html-card">'
     '<div class="html-title">Conclusão</div>'
-    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O projeto cumpre com excelência todos os requisitos propostos na disciplina, transformando a base de dados de saúde pública em um painel analítico estruturado, interativo e de alto valor para a tomada de decisão.</p>'
+    '<p class="texto-justificado" style="color: #c4b5fd; margin: 0;">O desenvolvimento deste painel analítico interativo cumpriu com excelência os objetivos propostos pelo Tema 23 e os requisitos da disciplina, traduzindo uma complexa base de dados de saúde pública em uma ferramenta digital moderna, visualmente coesa e de alto valor estratégico para a tomada de decisão. A aplicação integrada de Python, Streamlit e bibliotecas avançadas de visualização permitiu estruturar um ambiente robusto que une usabilidade, precisão técnica e rigor acadêmico, consolidando-se como uma solução eficiente para a exploração e compreensão de cenários essenciais no contexto da saúde no Brasil.</p>'
     '</div>',
     unsafe_allow_html=True
 )

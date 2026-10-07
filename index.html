@@ -8,34 +8,61 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             padding: 40px; 
-            background-color: #0e0e10; 
-            color: #e0e0e0; 
+            background-color: #0b090c; 
+            color: #e0dced; 
         }
         h1 { 
-            color: #ab47bc; 
+            color: #ff7518; 
             font-size: 32px;
-            border-bottom: 2px solid #ff9800; 
+            border-bottom: 2px solid #9d4edd; 
             padding-bottom: 15px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 117, 24, 0.4);
+        }
+        .subtitle {
+            color: #b197fc;
+            font-size: 16px;
             margin-bottom: 30px;
+            font-weight: 500;
         }
         h2 {
-            color: #ff9800; 
+            color: #ff7518; 
             font-size: 20px;
-            margin-top: 35px;
-            border-left: 4px solid #ab47bc; 
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-left: 4px solid #9d4edd; 
             padding-left: 12px;
         }
         .info-card, .section-card {
-            background: #18181b;
+            background: #16131a; 
             padding: 25px;
             border-radius: 8px;
             margin-bottom: 20px;
-            border: 1px solid #2d2d35;
-            border-top: 3px solid #ab47bc; 
+            border: 1px solid #2d263b;
+            border-top: 3px solid #ff7518; 
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .info-card:hover, .section-card:hover {
+            border-color: #9d4edd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(157, 78, 221, 0.2);
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .grid-2 .section-card {
+            margin-bottom: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
         }
         p, li {
             line-height: 1.6;
-            color: #b0b0b5;
+            color: #c4b5fd;
         }
         .texto-justificado {
             text-align: justify !important;
@@ -45,6 +72,9 @@
             margin: 5px 0;
             padding-left: 20px;
         }
+        li {
+            margin-bottom: 8px;
+        }
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
@@ -52,35 +82,44 @@
             margin-top: 15px;
         }
         .tag {
-            background: #212126;
-            color: #ce93d8; 
+            background: #211a2d;
+            color: #ffb703; 
             padding: 6px 14px;
             border-radius: 4px;
             font-size: 14px;
-            border: 1px solid #ab47bc;
+            border: 1px solid #ff7518;
+            font-weight: 500;
             cursor: pointer;
         }
         a.btn { 
             display: inline-block; 
             background: #2e7d32; 
-            color: white; 
+            color: #ffffff; 
             padding: 12px 24px; 
             text-decoration: none; 
             border-radius: 6px; 
             margin-top: 15px; 
             font-weight: bold; 
-            transition: background 0.3s ease;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
             border: 1px solid #4caf50;
         }
         a.btn:hover { 
             background: #1b5e20; 
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.6);
+        }
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
     <h1>Dashboard Executivo de Saúde Pública no Brasil</h1>
+    <div class="subtitle">Projeto de Análise e Visualização de Dados • Tema 23 (Halloween Edition)</div>
     
     <div class="info-card">
         <p><strong>Disciplina:</strong> Linguagem de Programação</p>
@@ -93,25 +132,28 @@
         <p class="texto-justificado">O projeto consiste no desenvolvimento de uma aplicação interativa voltada para a análise exploratória e visualização detalhada de dados de saúde pública nos municípios brasileiros entre os anos de 2015 e 2024. A proposta utiliza ferramentas de programação e manipulação de dados em Python para investigar de forma prática como fatores como a expectativa de vida, as taxas de mortalidade, a cobertura vacinal e a distribuição de leitos e profissionais médicos se comportam em diferentes regiões do país. A partir do tratamento da base de dados e da criação de indicadores dinâmicos, o projeto traduz informações complexas em visualizações claras e acessíveis por meio de um painel interativo publicado na web, facilitando a interpretação dos resultados e a compreensão de cenários essenciais para a área da saúde.</p>
     </div>
 
-    <div class="section-card">
-        <h2>Perguntas de negócio</h2>
-        <ul>
-            <li>Qual é a média da expectativa de vida por região?</li>
-            <li>Como se comportam os índices de mortalidade entre os municípios?</li>
-            <li>Qual é a relação entre a quantidade de médicos por mil habitantes e a criticidade do sistema?</li>
-            <li>Quais regiões apresentam maior cobertura vacinal ao longo dos anos?</li>
-            <li>Como a taxa de internação evoluiu no período analisado?</li>
-        </ul>
-    </div>
+    <div class="grid-2">
+        <div class="section-card">
+            <h2>Perguntas de negócio</h2>
+            <ul>
+                <li>Qual é a média da expectativa de vida por região?</li>
+                <li>Como se comportam os índices de mortalidade entre os municípios?</li>
+                <li>Qual é a relação entre a quantidade de médicos por mil habitantes e a criticidade do sistema?</li>
+                <li>Quais regiões apresentam maior cobertura vacinal ao longo dos anos?</li>
+                <li>Como a taxa de internação evoluiu no período analisado?</li>
+            </ul>
+        </div>
 
-    <div class="section-card">
-        <h2>Indicadores analisados</h2>
-        <ul>
-            <li><strong>Expectativa de Vida Média:</strong> Avaliação da longevidade populacional.</li>
-            <li><strong>Taxa Média de Mortalidade:</strong> Monitoramento dos índices de mortalidade.</li>
-            <li><strong>Cobertura Vacinal:</strong> Acompanhamento percentual da imunização.</li>
-            <li><strong>Casos de Doenças Crônicas:</strong> Mapeamento da incidência epidemiológica.</li>
-        </ul>
+        <div class="section-card">
+            <h2>Indicadores analisados</h2>
+            <ul>
+                <li><strong>Expectativa de Vida Média:</strong> Avaliação da longevidade populacional.</li>
+                <li><strong>Taxa Média de Mortalidade:</strong> Monitoramento dos índices de mortalidade.</li>
+                <li><strong>Cobertura Vacinal:</strong> Acompanhamento percentual da imunização.</li>
+                <li><strong>Casos de Doenças Crônicas:</strong> Mapeamento da incidência epidemiológica.</li>
+                <li><strong>Taxa de Internação:</strong> Acompanhamento da frequência de internamentos.</li>
+            </ul>
+        </div>
     </div>
 
     <div class="section-card">
@@ -129,7 +171,7 @@
     <div class="section-card">
         <h2>Dashboard Interativo</h2>
         <p>O dashboard principal foi desenvolvido com Streamlit e permite explorar os dados por meio de filtros interativos, KPIs e gráficos.</p>
-        <a class="btn" href="https://projeto-g1-lp-pamela-souza.streamlit.app" target="_blank" title="Acessar Dashboard">Acessar Dashboard</a>    
+        <a class="btn" href="https://projeto-g1-lp-pamela-souza.streamlit.app" target="_blank" title="Acessar Dashboard Streamlit">Acessar Dashboard Streamlit</a>    
     </div>
 
 </body>
